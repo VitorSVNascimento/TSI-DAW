@@ -69,19 +69,48 @@ private Connection connection;
 		try(PreparedStatement stm = connection.prepareStatement(sql)){
 			ResultSet rs = stm.executeQuery();
 			while(rs.next()) {
-				Contato contato = new Contato();
-				contato.setId(rs.getLong("id"));
-				contato.setNome(rs.getString("nome"));
-				contato.setEmail(rs.getString("email"));
-				contato.setEndereco(rs.getString("endereco"));
-				Calendar data = Calendar.getInstance();
-				data.setTime(rs.getDate("datanascimento"));
-				contato.setDataNascimento(data);
-				contatos.add(contato);
+				Contato contato = obterContato(rs);
+				if(contato != null)
+					contatos.add(contato);
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return contatos;
+	}
+	
+	public Contato Pesquisar(int id) {
+		
+		String sql = "select * from contato WHERE id=?";
+		try(PreparedStatement stm = connection.prepareStatement(sql)){
+			stm.setInt(1, id);
+			ResultSet rs = stm.executeQuery();
+			rs.next();
+			Contato contato = obterContato(rs);
+			return contato;
+			
+		}catch (SQLException e) {
+			return null;
+		}
+		
+		
+	}
+	
+	private Contato obterContato(ResultSet rs) {
+		try {
+			
+			Contato contato = new Contato();
+			contato.setId(rs.getLong("id"));
+			contato.setNome(rs.getString("nome"));
+			contato.setEmail(rs.getString("email"));
+			contato.setEndereco(rs.getString("endereco"));
+			Calendar data = Calendar.getInstance();
+			data.setTime(rs.getDate("datanascimento"));
+			contato.setDataNascimento(data);
+			return contato;
+		}catch (SQLException execption) {
+			execption.printStackTrace();
+			return null;
+		}
 	}
 }
