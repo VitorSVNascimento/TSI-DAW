@@ -1,9 +1,9 @@
-package vsvn.daw.agendacontato.teste;
+package vsvn.daw.alunoseprofessores.teste;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import vsvn.daw.agendacontato.jdbc.ConnectionFactory;
+import vsvn.daw.alunoseprofessores.jdbc.ConnectionFactory;
 
 public class TestaConexao {
 

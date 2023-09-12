@@ -1,10 +1,10 @@
-package vsvn.daw.agendacontato.teste;
+package vsvn.daw.alunoseprofessores.teste;
 
 import java.util.Calendar;
 import java.util.Scanner;
 
-import vsvn.daw.agendacontato.dao.AlunoDAO;
-import vsvn.daw.agendacontato.modelo.Aluno;
+import vsvn.daw.alunoseprofessores.dao.AlunoDAO;
+import vsvn.daw.alunoseprofessores.modelo.Aluno;
 
 public class AlunoTeste {
 

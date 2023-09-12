@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -7,6 +10,7 @@
         <title>Adiciona Professor</title>
     </head>
     <body>
+    	<c:import url="cabecalho.jsp"/>
         <form action="adicionaProfessor">
             <div class="mb-3">
               <label for="nome" class="form-label">Nome:</label>
@@ -25,6 +29,7 @@
 
             <button type="submit" class="btn btn-primary">Salvar</button>
           </form>
+          <c:import url="rodape.jsp"/>
           <script src="bootstrap-5.0.2/js/bootstrap.min.js"></script>
     </body>
 </html>

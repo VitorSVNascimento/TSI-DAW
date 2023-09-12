@@ -1,4 +1,4 @@
-package vsvn.daw.agendacontato.modelo;
+package vsvn.daw.alunoseprofessores.modelo;
 
 
 

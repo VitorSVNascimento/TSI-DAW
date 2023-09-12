@@ -1,4 +1,4 @@
-package vsvn.daw.agendacontato.dao;
+package vsvn.daw.alunoseprofessores.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import vsvn.daw.agendacontato.jdbc.ConnectionFactory;
-import vsvn.daw.agendacontato.modelo.Professor;
+import vsvn.daw.alunoseprofessores.jdbc.ConnectionFactory;
+import vsvn.daw.alunoseprofessores.modelo.Professor;
 
 public class ProfessorDAO {
 

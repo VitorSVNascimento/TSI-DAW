@@ -1,4 +1,4 @@
-package vsvn.daw.agendacontato.modelo;
+package vsvn.daw.alunoseprofessores.modelo;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package vsvn.daw.agendacontato.servlet;
+package vsvn.daw.alunoseprofessores.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,8 +8,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import vsvn.daw.agendacontato.dao.ProfessorDAO;
-import vsvn.daw.agendacontato.modelo.Professor;
+import vsvn.daw.alunoseprofessores.dao.ProfessorDAO;
+import vsvn.daw.alunoseprofessores.modelo.Professor;
 
 @WebServlet("/adicionaProfessor")
 public class AdicionaProfessorServlet extends HttpServlet{

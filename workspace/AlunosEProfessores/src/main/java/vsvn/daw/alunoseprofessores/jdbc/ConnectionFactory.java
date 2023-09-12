@@ -1,4 +1,4 @@
-package vsvn.daw.agendacontato.jdbc;
+package vsvn.daw.alunoseprofessores.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

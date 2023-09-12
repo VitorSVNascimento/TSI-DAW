@@ -1,4 +1,4 @@
-package vsvn.daw.agendacontato.servlet;
+package vsvn.daw.alunoseprofessores.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,8 +11,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import vsvn.daw.agendacontato.dao.AlunoDAO;
-import vsvn.daw.agendacontato.modelo.Aluno;
+import vsvn.daw.alunoseprofessores.dao.AlunoDAO;
+import vsvn.daw.alunoseprofessores.modelo.Aluno;
 
 
 @WebServlet("/adicionaAluno")

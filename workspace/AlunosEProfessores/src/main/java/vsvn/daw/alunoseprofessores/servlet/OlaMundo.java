@@ -1,4 +1,4 @@
-package vsvn.daw.agendacontato.servlet;
+package vsvn.daw.alunoseprofessores.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
