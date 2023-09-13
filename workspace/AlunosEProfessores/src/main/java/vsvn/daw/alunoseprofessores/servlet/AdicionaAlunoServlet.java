@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -56,11 +57,8 @@ public class AdicionaAlunoServlet extends HttpServlet{
 		AlunoDAO dao = new AlunoDAO();
 		dao.adiciona(student);
 		
-		out.println("<html>");
-		out.println("<body>");
-		out.println("<h1> Aluno adicionado com sucesso! </h1>");
-		out.println("</body>");
-		out.println("</html>");
+		RequestDispatcher rd = req.getRequestDispatcher("/aluno-adicionado.jsp");
+		rd.forward(req, resp);
 	}
 
 }
