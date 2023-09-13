@@ -10,7 +10,7 @@
     </head>
     <body>
     	<c:import url="cabecalho.jsp"></c:import>
-    	<jsp:useBean id="dao" class="br.tsi.daw.servelet.dao.ContatoDAO"></jsp:useBean>
+    	<jsp:useBean id="dao" class="br.tsi.daw.agenda.dao.ContatoDAO"></jsp:useBean>
         <h2>Lista de contatos</h2>
         <hr>
         <table border="1px">

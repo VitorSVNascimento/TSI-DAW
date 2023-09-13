@@ -1,6 +1,6 @@
-<%@page import="br.tsi.daw.servelet.modelo.Contato"%>
+<%@page import="br.tsi.daw.agenda.modelo.Contato"%>
 <%@page import="java.util.List"%>
-<%@page import="br.tsi.daw.servelet.dao.ContatoDAO"%>
+<%@page import="br.tsi.daw.agenda.dao.ContatoDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>

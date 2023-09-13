@@ -1,4 +1,4 @@
-package br.tsi.daw.servelet;
+package br.tsi.daw.agenda;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,8 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import br.tsi.daw.servelet.dao.ContatoDAO;
-import br.tsi.daw.servelet.modelo.Contato;
+import br.tsi.daw.agenda.dao.ContatoDAO;
+import br.tsi.daw.agenda.modelo.Contato;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

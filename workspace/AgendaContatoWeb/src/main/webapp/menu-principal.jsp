@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
-	<meta charset="ISO-8859-1">
+		<link rel="stylesheet" href="webjars/bootstrap/5.0.2/css/bootstrap.min.css">
+		<meta charset="UTF-8">
 		<title>Menu principal</title>
 	</head>
 	<body>
-        <a href="adiciona-contato.jsp">Adicionar Contato</a>
-        <a href="lista-contato.jstl.jsp">Todos os Contatos</a>
-        <a href="remover-contato.jsp">Remover Contato</a>
-        <a href="obter-id-alteracao.jsp">Alterar Contato</a>
+		<c:import url="cabecalho.jsp"></c:import>
+		<h2></h2>
 	</body>
 </html>

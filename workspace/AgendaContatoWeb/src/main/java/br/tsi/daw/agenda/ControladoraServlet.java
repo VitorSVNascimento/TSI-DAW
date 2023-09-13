@@ -1,4 +1,4 @@
-package br.tsi.daw.servelet;
+package br.tsi.daw.agenda;
 
 import java.io.IOException;
 

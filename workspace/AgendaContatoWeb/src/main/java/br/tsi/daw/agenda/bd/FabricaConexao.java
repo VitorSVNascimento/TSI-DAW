@@ -1,4 +1,4 @@
-package br.tsi.daw.servelet.bd;
+package br.tsi.daw.agenda.bd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

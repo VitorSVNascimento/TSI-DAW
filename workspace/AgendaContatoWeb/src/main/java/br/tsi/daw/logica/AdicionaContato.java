@@ -7,8 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import br.tsi.daw.servelet.dao.ContatoDAO;
-import br.tsi.daw.servelet.modelo.Contato;
+import br.tsi.daw.agenda.dao.ContatoDAO;
+import br.tsi.daw.agenda.modelo.Contato;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package br.tsi.daw.servelet.dao;
+package br.tsi.daw.agenda.dao;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import br.tsi.daw.servelet.bd.FabricaConexao;
-import br.tsi.daw.servelet.modelo.Contato;
+import br.tsi.daw.agenda.bd.FabricaConexao;
+import br.tsi.daw.agenda.modelo.Contato;
 
 public class ContatoDAO {
 private Connection connection;

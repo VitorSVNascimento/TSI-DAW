@@ -1,4 +1,4 @@
-package br.tsi.daw.servelet.modelo;
+package br.tsi.daw.agenda.modelo;
 
 import java.util.Calendar;
 
