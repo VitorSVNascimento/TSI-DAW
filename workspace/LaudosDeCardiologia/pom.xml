@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>AgendaContatoWeb</groupId>
-  <artifactId>AgendaContatoWeb</artifactId>
+  <groupId>LaudosDeCardiologia</groupId>
+  <artifactId>LaudosDeCardiologia</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
   <build>
@@ -19,9 +19,8 @@
       </plugin>
     </plugins>
   </build>
-  
-	<dependencies>
- 	 <dependency>
+  <dependencies>
+   	<dependency>
     	<groupId>jakarta.servlet.jsp.jstl</groupId>
     	<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
     	<version>3.0.0</version>
@@ -42,14 +41,5 @@
 		<artifactId>postgresql</artifactId>
 		<version>42.6.0</version>
 	</dependency>
-
-	
-	<!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
-	<dependency>
-	    <groupId>org.webjars</groupId>
-	    <artifactId>bootstrap</artifactId>
-	    <version>5.0.2</version>
-	</dependency>
-
   </dependencies>
 </project>
