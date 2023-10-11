@@ -27,7 +27,7 @@ public class EfetuaLogin implements Logica {
 			session.setAttribute(CRM, medico.getCrm());
 			session.setAttribute(CATEGORIA, medico.getCategoria().getDescricao());
 			session.setAttribute("status", true);
-			session.setMaxInactiveInterval(2*60);
+			session.setMaxInactiveInterval(10*60);
 			url = "menu-principal.jsp";
 			return url;
 		}

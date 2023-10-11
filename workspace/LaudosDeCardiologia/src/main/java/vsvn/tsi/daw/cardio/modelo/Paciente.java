@@ -49,6 +49,18 @@ public class Paciente {
 		this.datanascimento = datanascimento;
 	}
 	
-	
+    public static int calcularIdade(Calendar dataNascimento) {
+        Calendar dataAtual = Calendar.getInstance();
+
+        int anos = dataAtual.get(Calendar.YEAR) - dataNascimento.get(Calendar.YEAR);
+        int mesAtual = dataAtual.get(Calendar.MONTH);
+        int mesNascimento = dataNascimento.get(Calendar.MONTH);
+
+        if (mesNascimento > mesAtual || (mesNascimento == mesAtual && dataNascimento.get(Calendar.DAY_OF_MONTH) > dataAtual.get(Calendar.DAY_OF_MONTH))) {
+            anos--;
+        }
+
+        return anos;
+    }
 	
 }

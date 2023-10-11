@@ -15,7 +15,8 @@
 
 	<context:component-scan base-package="br.tsi.daw.tarefas" />
 	<mvc:annotation-driven />
-
+	<!-- Permite que o spring use arquivos staticos -->
+	<mvc:default-servlet-handler/>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/" />

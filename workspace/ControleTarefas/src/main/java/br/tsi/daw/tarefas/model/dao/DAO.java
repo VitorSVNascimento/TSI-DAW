@@ -2,8 +2,8 @@ package br.tsi.daw.tarefas.model.dao;
 
 import java.util.List;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.criteria.CriteriaQuery;
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaQuery;
 
 public class DAO<T> {
 	private Class<T> classe;

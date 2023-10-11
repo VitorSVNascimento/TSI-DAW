@@ -2,9 +2,10 @@ package br.tsi.daw.tarefas.model.dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
 import br.tsi.daw.tarefas.model.Usuario;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 
 public class UsuarioDAO {
 	EntityManager manager;

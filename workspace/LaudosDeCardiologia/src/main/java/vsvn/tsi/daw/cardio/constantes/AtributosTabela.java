@@ -7,6 +7,11 @@ public interface AtributosTabela {
 			CATEGORIA = "categoria",
 			TITULACAO= "titulacao",
 			ANO_INICIO = "ano_inicio",
-			SENHA = "senha";
+			SENHA = "senha",
+			CPF = "cpf",
+			EMAIL = "email",
+			SEXO = "sexo",
+			DATA_NASCIMENTO = "datanascimento"
+			;
 	
 }

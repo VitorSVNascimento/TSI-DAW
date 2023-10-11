@@ -11,6 +11,6 @@
 	</head>
 	<body>
 		<c:import url="cabecalho.jsp"></c:import>
-		<h2></h2>
+
 	</body>
 </html>

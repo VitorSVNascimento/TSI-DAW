@@ -10,5 +10,15 @@
 	</head>
 	<body>
 		<h1>Este é o menu principal</h1>
+		<h2>${sessionScope.categoria }</h2>
+		<c:if test="${sessionScope.categoria == 'Médico Residente'}">
+			<h2><a href="realizar-exame.jsp">Realizar exame </a></h2>
+		</c:if>
+		<c:if test="${sessionScope.categoria == 'Médico'}">
+			<h2><a href="pedir-exame-cpf.jsp">Efatuar Pedido de Exame </a></h2>
+		</c:if>
+		<c:if test="${sessionScope.categoria == 'Médico Docente'}">
+			<h2><a href="pedir-exame.jsp">Avaliar Laudos </a></h2>
+		</c:if>
 	</body>
 </html>
