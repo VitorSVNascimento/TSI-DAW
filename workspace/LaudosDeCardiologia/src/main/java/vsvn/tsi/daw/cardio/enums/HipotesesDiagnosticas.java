@@ -31,9 +31,29 @@ public enum HipotesesDiagnosticas {
 	    public static String getDescricaoFromString(String codigoDescricao) {
 	        return codigoDescricao.split(" - ")[1];
 	    }
+	    
+	    public static HipotesesDiagnosticas fromString(String str) {
+	        for (HipotesesDiagnosticas value : HipotesesDiagnosticas.values()) {
+	            if (value.toString().equals(str)) {
+	                return value;
+	            }
+	        }
+	        return null;
+	    }
+	    public static HipotesesDiagnosticas fromCodigo(String str) {
+	    	for (HipotesesDiagnosticas value : HipotesesDiagnosticas.values()) {
+	    		if (value.getCodigo().equals(str)) {
+	    			return value;
+	    		}
+	    	}
+	    	return null;
+	    }
+
 
 	    public String toString() {
 	        return codigo + " - " + descricao;
 	    }
+	    
+	    
 
 }

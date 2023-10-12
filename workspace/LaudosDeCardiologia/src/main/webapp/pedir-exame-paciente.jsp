@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <%@include file="autenticacaoDemaisMedicos.jsp" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="vsvn.tsi.daw.cardio.enums.TiposDeExames" %>
@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Pagina de exame</title>
 </head>
 <body>
@@ -34,7 +34,7 @@
 	</div>
 	
 	<div>
-		<form action="Controladora">
+		<form action="controladora">
 		
 			<select name="tipo_exame">
 		    	<c:forEach items="<%= TiposDeExames.values() %>" var="opcao">
@@ -44,7 +44,7 @@
 			
 			<select name="hipotese">
 		    	<c:forEach items="<%= HipotesesDiagnosticas.values() %>" var="opcao">
-	        		<option value="${opcao.toString()}"><c:out value="${opcao.toString()}" /></option>
+	        		<option value="${opcao.getCodigo()}"><c:out value="${opcao.toString()}" /></option>
 	    		</c:forEach>
 			</select>
 			

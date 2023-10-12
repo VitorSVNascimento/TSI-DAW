@@ -12,7 +12,7 @@ public class Email {
 
 	private String EMAIL_CONF_FILE = "conf/config.properties";
 	private String EMAIL_HOST_NAME = "smtp.googlemail.com";
-	private int EMAIL_SMTP_PORT= 456;
+	private int EMAIL_SMTP_PORT= 465;
 	
 	private String email;
 	private String senha;
@@ -36,6 +36,16 @@ public class Email {
 		this.assunto = assunto;
 		this.mensagem = mensagem;
 		loadProperties();
+	}
+	
+	
+	
+	public Email(String email, String senha, String destinatario, String assunto, String mensagem) {
+		this.email = email;
+		this.senha = senha;
+		this.destinatario = destinatario;
+		this.assunto = assunto;
+		this.mensagem = mensagem;
 	}
 
 

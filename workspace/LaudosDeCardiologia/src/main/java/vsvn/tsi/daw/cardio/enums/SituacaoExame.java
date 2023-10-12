@@ -12,6 +12,20 @@ public enum SituacaoExame {
 		this.descricao = descricao;
 	}
 	
+	
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+
 	public static SituacaoExame getSituacaoExameFromString(String descricao) {
 	    for (SituacaoExame situacao : SituacaoExame.values()) 
 	        if (situacao.descricao.equalsIgnoreCase(descricao)) 
