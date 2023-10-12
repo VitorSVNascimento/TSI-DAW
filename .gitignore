@@ -27,3 +27,6 @@ replay_pid*
 Servers/
 #eclipse config
 .metadata/
+
+#Variaveis de Ambiente
+config.properties

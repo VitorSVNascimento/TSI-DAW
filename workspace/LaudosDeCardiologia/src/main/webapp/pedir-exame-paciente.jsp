@@ -34,7 +34,7 @@
 	</div>
 	
 	<div>
-		<form action="">
+		<form action="Controladora">
 		
 			<select name="tipo_exame">
 		    	<c:forEach items="<%= TiposDeExames.values() %>" var="opcao">
@@ -48,7 +48,8 @@
 	    		</c:forEach>
 			</select>
 			
-			
+			<input type="submit" value="Realizar Pedido">
+			<input type="hidden" name="logica" value="RealizarPedido">
 			
 		</form>
 	</div>

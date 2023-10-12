@@ -43,7 +43,7 @@
 	</dependency>
 	
 	<dependency>
-		<groupId>org.apache.commons</groupI>
+		<groupId>org.apache.commons</groupId>
 		<artifactId>commons-email</artifactId>
 		<version>1.5</version>
 	</dependency>
