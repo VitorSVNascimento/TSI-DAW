@@ -26,6 +26,7 @@ public class EfetuaLogin implements Logica {
 			HttpSession session = req.getSession();
 			session.setAttribute(CRM, medico.getCrm());
 			session.setAttribute(CATEGORIA, medico.getCategoria().getDescricao());
+			session.setAttribute("nome_medico", medico.getNome());
 			session.setAttribute("status", true);
 			session.setMaxInactiveInterval(10*60);
 			url = "menu-principal.jsp";

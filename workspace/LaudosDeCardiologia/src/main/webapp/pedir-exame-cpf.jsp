@@ -8,7 +8,7 @@
 <title>Pagina de exame</title>
 </head>
 <body>
-	<form action="controladora">
+	<form method="post" action="controladora">
 		CPF do paciente: <input type="text" name="cpf">
 		<input type="hidden" name="logica" value="ObterDadosPaciente">
 		<input type="submit">

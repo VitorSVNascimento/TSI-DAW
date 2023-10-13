@@ -6,11 +6,11 @@ import java.util.Properties;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
+import org.apache.commons.mail.HtmlEmail;
 
 public class Email {
 
-	private String EMAIL_CONF_FILE = "conf/config.properties";
+	private String EMAIL_CONF_FILE = "E:/VitorLenovoBackup/IF/TSI/4° Periodo/DAW/TSI-DAW/TSI-DAW/workspace/LaudosDeCardiologia/conf/config.properties";
 	private String EMAIL_HOST_NAME = "smtp.googlemail.com";
 	private int EMAIL_SMTP_PORT= 465;
 	
@@ -37,9 +37,7 @@ public class Email {
 		this.mensagem = mensagem;
 		loadProperties();
 	}
-	
-	
-	
+		
 	public Email(String email, String senha, String destinatario, String assunto, String mensagem) {
 		this.email = email;
 		this.senha = senha;
@@ -85,7 +83,7 @@ public class Email {
 	public boolean enviar() {
 		
 		try {
-			SimpleEmail email = new SimpleEmail();
+			HtmlEmail email = new HtmlEmail();
 			email.setHostName(EMAIL_HOST_NAME);
 			email.setSmtpPort(EMAIL_SMTP_PORT);
 			
@@ -94,9 +92,10 @@ public class Email {
 			email.setSSLOnConnect(true);
 			email.setFrom(this.email);
 			email.setSubject(this.assunto);
-			email.setMsg(this.mensagem);
+			email.setHtmlMsg(this.mensagem);
 			email.addTo(this.destinatario);
 			email.send();
+			
 			
 		}catch (EmailException e) {
 			e.printStackTrace();

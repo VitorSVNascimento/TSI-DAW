@@ -8,7 +8,7 @@
 	</head>
   <body class="text-center">
 
- 	<form action="controladora">
+ 	<form method="post" action="controladora">
  		<h1>Faça seu login</h1>
  		<label for="inputCrm">CRM:</label><input name="crm" type="text" id="inputCrm" placeholder="Digite seu CRM" required="required">
  		<label for="inputSenha">Senha:</label><input name="senha" type="password" id="inputSenha" placeholder="Digite sua senha" required="required">

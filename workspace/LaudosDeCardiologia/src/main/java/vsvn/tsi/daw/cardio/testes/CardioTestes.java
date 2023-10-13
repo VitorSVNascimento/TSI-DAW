@@ -2,20 +2,14 @@ package vsvn.tsi.daw.cardio.testes;
 
 import java.util.List;
 
-import org.apache.commons.mail.DefaultAuthenticator;
-import org.apache.commons.mail.EmailException;
-import org.apache.commons.mail.SimpleEmail;
-
 import vsvn.tsi.daw.cardio.dao.MedicoDAO;
-import vsvn.tsi.daw.cardio.email.Email;
 import vsvn.tsi.daw.cardio.modelo.Medico;
 
 public class CardioTestes {
 
 	public static void main(String[] args) {
 		//testeMedico();
-		testeEmail();
-		
+		//testeEmail();
 
 	}
 
@@ -30,10 +24,13 @@ public class CardioTestes {
 		Medico medico = dao.validaCredencial("crm890123", "123456");
 		System.out.println(medico);
 		
-//		for(Medico m : medicos)
-//			System.out.println(m);
+		for(Medico m : medicos)
+			System.out.println(m);
 		
 	}
+	
+  
+
 	
 
 

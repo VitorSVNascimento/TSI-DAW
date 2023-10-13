@@ -19,6 +19,9 @@
 		Um email foi enviado ao paciente
 		</p>
 	</div>
+	<div>
+		<a href="menu-principal.jsp">Voltar para página principal</a>
+	</div>
 	
 </body>
 </html>
