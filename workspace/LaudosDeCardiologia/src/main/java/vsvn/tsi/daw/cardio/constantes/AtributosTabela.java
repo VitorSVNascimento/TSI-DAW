@@ -17,7 +17,11 @@ public interface AtributosTabela {
 			ID="id",
 			TIPO = "tipo",
 			DATA_PEDIDO = "datapedido",
-			DATA_E_HORA_REALIZACAO = "data_e_hora_realizacao";
+			DATA_E_HORA_REALIZACAO = "data_e_hora_realizacao",
+			CONCLUSAO = "conclusao",
+			ID_EXAME = "id_exame",
+			DESCRICAO = "descricao",
+			IMAGENS_PATH="imagens_path";
 			
 	
 }

@@ -5,26 +5,21 @@ import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import vsvn.tsi.daw.cardio.dao.LaudoDAO;
-import vsvn.tsi.daw.cardio.enums.SituacaoLaudo;
 
-public class ObterLaudosParaAvaliacao implements Logica{
-	
+public class AprovarLaudo implements Logica {
+
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			HttpSession session = req.getSession();
-			session.setAttribute("laudos", new LaudoDAO().getLaudoPorSituacao(SituacaoLaudo.PROVISORIO));
-			return "avaliar-laudo.jsp";
 			
+			String id = req.getParameter("id_laudo");
+			new LaudoDAO().autorizarLaudo(Long.parseLong(id));
+			return "avaliar-laudo-sucesso.jsp";
 		}catch (Exception e) {
 			e.printStackTrace();
-			return "errors/erro-ao-obter-exames.jsp";
+			return "errors/erro-ao-aprovar-laudos.jsp";
 		}
-		
 	}
-	
-	
-	
+
 }

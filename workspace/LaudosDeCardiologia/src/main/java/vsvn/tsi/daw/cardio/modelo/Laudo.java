@@ -1,23 +1,27 @@
 package vsvn.tsi.daw.cardio.modelo;
 
+import vsvn.tsi.daw.cardio.enums.HipotesesDiagnosticas;
 import vsvn.tsi.daw.cardio.enums.SituacaoLaudo;
 
 public class Laudo {
 	
-	private Long id,id_exame;
+	private Long id;
+	private Exame exame;
 	private SituacaoLaudo situacao;
-	private String descricao,conclusao,images_path,crm;
+	private HipotesesDiagnosticas conclusao;
+	private String descricao,images_path,crm;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getId_exame() {
-		return id_exame;
+	
+	public Exame getExame() {
+		return exame;
 	}
-	public void setId_exame(Long id_exame) {
-		this.id_exame = id_exame;
+	public void setExame(Exame exame) {
+		this.exame = exame;
 	}
 	public SituacaoLaudo getSituacao() {
 		return situacao;
@@ -31,10 +35,11 @@ public class Laudo {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getConclusao() {
+
+	public HipotesesDiagnosticas getConclusao() {
 		return conclusao;
 	}
-	public void setConclusao(String conclusao) {
+	public void setConclusao(HipotesesDiagnosticas conclusao) {
 		this.conclusao = conclusao;
 	}
 	public String getImages_path() {

@@ -71,5 +71,20 @@ public class MedicoDAO {
 		return medico;
 	}
 	
+	public Medico obterMedicoPeloCRM(String crm) {
+		String sql = "select * from medico where crm=?";
+		Medico medico = null;
+		try (PreparedStatement stmt = connection.prepareStatement(sql)){
+			stmt.setString(1, crm);
+			ResultSet rs = stmt.executeQuery();
+			while (rs.next()) 
+				medico = obterMedicoFromResultSet(rs);
+			
+		} catch (SQLException e) {
+			return null;
+		}
+		return medico;
+	}
+	
 	
 }

@@ -4,7 +4,8 @@ public enum SituacaoExame {
 
 	AGUARDANDO_EXAME("Aguardando Exame"),
 	AGUARDANDO_LAUDO("Aguardando Laudo"),
-	LAUDO_REALIZADO("Laudo Realizado");
+	LAUDO_REALIZADO("Laudo Realizado"),
+	CANCELADO("Cancelado");
 	
 	private String descricao;
 	

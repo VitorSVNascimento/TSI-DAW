@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Laudo Autorizado com sucesso</title>
+<title>Erro ao Aprovar laudo</title>
 </head>
 <body>
-<h1>Laudo autorizado e disponibilizado para consulta</h1>
-<a href="menu-principal.jsp">Voltar para o menu principal</a>
+ <h1>Não foi possivel aprovar o laudo provisório</h1>
+ <a href="menu-principal.jsp">Voltar para o menu principal</a>
 </body>
 </html>

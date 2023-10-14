@@ -20,7 +20,7 @@ public class ObterExamesAguardandoLaudo implements Logica {
 			
 		}catch (Exception e) {
 			// TODO: handle exception
-			return "errors/erro-ao-obter-exames.jsp";
+			return "errors/erro-ao-obter-laudos.jsp";
 		}
 		
 	}

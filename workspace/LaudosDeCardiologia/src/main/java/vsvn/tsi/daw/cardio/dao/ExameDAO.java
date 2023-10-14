@@ -73,6 +73,22 @@ public class ExameDAO {
 		
 	}
 	
+	public boolean cancelarExame(Exame exame) {
+		String sql = "UPDATE exame SET situacao=? WHERE id=?";
+		try (PreparedStatement stm = connection.prepareStatement(sql)) {
+			stm.setString(1, exame.getSituacao().getDescricao());
+			stm.setLong(2, exame.getId());
+			
+			stm.execute();
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
 	public boolean realizaLaudoExame(Exame exame) {
 		String sql = "UPDATE exame SET situacao=? WHERE id=?";
 		try (PreparedStatement stm = connection.prepareStatement(sql)) {
@@ -95,6 +111,10 @@ public class ExameDAO {
 
 	public List<Exame> getExamesDoDia() {
 	    return getExamesPorFiltro(String.format("SELECT * FROM exame WHERE datapedido = CURRENT_DATE - INTERVAL '%d days' and situacao ='%s'", DIAS_DE_ESPERA,SituacaoExame.AGUARDANDO_EXAME.getDescricao()) , new String[0]);
+	}
+	
+	public List<Exame> getExamesParaCancelar() {
+		return getExamesPorFiltro(String.format("SELECT * FROM exame WHERE datapedido <= CURRENT_DATE - INTERVAL '%d days' and situacao ='%s'", DIAS_DE_ESPERA+1,SituacaoExame.AGUARDANDO_EXAME.getDescricao()) , new String[0]);
 	}
 	
 	public List<Exame> getExamesAguardandoLaudo() {

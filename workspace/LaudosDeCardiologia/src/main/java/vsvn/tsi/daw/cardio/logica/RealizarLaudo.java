@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import vsvn.tsi.daw.cardio.dao.ExameDAO;
 import vsvn.tsi.daw.cardio.dao.LaudoDAO;
+import vsvn.tsi.daw.cardio.enums.HipotesesDiagnosticas;
 import vsvn.tsi.daw.cardio.enums.SituacaoExame;
 import vsvn.tsi.daw.cardio.enums.SituacaoLaudo;
 import vsvn.tsi.daw.cardio.modelo.Exame;
@@ -27,10 +28,10 @@ public class RealizarLaudo implements Logica {
 			exame.setSituacao(SituacaoExame.LAUDO_REALIZADO);
 			new ExameDAO().realizaLaudoExame(exame);
 			
-			laudo.setConclusao(req.getParameter("conclusao"));
+			laudo.setConclusao(HipotesesDiagnosticas.fromCodigo(req.getParameter("conclusao")));
 			laudo.setDescricao(req.getParameter("descricao"));
 			laudo.setCrm(exame.getCrm());
-			laudo.setId_exame(exame.getId());
+			laudo.setExame(exame);
 			laudo.setImages_path(String.format("%s/%d.pdf", exame.getCpf(),exame.getId()));
 			laudo.setCrm((String)session.getAttribute("crm"));
 			laudo.setSituacao(SituacaoLaudo.PROVISORIO);

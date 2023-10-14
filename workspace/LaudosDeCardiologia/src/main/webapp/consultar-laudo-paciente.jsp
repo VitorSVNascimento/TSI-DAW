@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@include file="autenticacaoDocente.jsp" %> 
+<%@include file="autenticacaoDemaisMedicos.jsp" %> 
 <% %>
 <!DOCTYPE html>
 <html>
@@ -24,17 +24,16 @@
 				<th>id do exame</th>
 				<th>CPF do paciente</th>
 				<th>Data e hora da realizacao</th>
-				<th>descricao</th>
-				<th>conclusao</th>
+				<th>Descricao</th>
+				<th>Conclusao</th>
 				<th>CRM do residente</th>
 				<th>Visualizar as imagens do exame</th>
-				<th>Aprovar Laudo</th>
 			
 			</tr>
 		
 		</thead>
 		
-		<c:forEach items="${sessionScope.laudos}" var="laudo" varStatus="loop">
+		<c:forEach items="${sessionScope.laudos_paciente}" var="laudo" varStatus="loop">
 			
 			<tr>
 				 <td>${laudo.exame.id}</td>
@@ -48,13 +47,6 @@
 					 <a href="#" id="pdf_viewer_${loop.index}">Clique para abrir o PDF</a>	
 				 
 				 </td>
-				 <td>
-				 	<form method="post" action="controladora">
-				 		<input type="hidden" name="id_laudo" value="${laudo.id}">
-				 		<input type="hidden" name="logica" value="AprovarLaudo">
-				 		<input type="submit" value="Aprovar Laudo">
-				 	</form>
-				 </td>
 			
 			</tr>
 			
@@ -66,7 +58,7 @@
 	
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
-		    <c:forEach items="${sessionScope.laudos}" var="laudo" varStatus="loop">
+		    <c:forEach items="${sessionScope.laudos_paciente}" var="laudo" varStatus="loop">
 		        var pdfViewer_${loop.index} = document.getElementById("pdf_viewer_${loop.index}");
 		        pdfViewer_${loop.index}.addEventListener("click", function () {
 		            var pdfURL = "pdfs_exames/${laudo.images_path}";

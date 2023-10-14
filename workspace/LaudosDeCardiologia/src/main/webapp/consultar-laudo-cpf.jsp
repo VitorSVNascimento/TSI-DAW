@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Consultar de exames</title>
+<title>Pagina de exame</title>
 </head>
 <body>
 	<form method="post" action="controladora">

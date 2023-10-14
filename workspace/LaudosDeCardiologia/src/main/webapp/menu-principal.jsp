@@ -34,7 +34,8 @@
 		</c:if>
 		
 		<c:if test="${sessionScope.categoria == 'Médico'}">
-			<h2><a href="pedir-exame-cpf.jsp">Efatuar Pedido de Exame </a></h2>
+			<h2><a href="pedir-exame-cpf.jsp">Efetuar Pedido de Exame </a></h2>
+			<h2><a href="consultar-laudo-cpf.jsp">Consultar Laudos </a></h2>
 		</c:if>
 		
 		<c:if test="${sessionScope.categoria == 'Médico Docente'}">
