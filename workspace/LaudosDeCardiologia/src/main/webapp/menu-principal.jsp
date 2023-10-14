@@ -25,6 +25,12 @@
 				<h3> <input type="submit" value="Exames do dia"></h3>
 		
 			</form>
+			
+			<form method="post" action="controladora" >
+				<input type="hidden" name="logica" value="ObterExamesAguardandoLaudo">
+				<h3> <input type="submit" value="Realizar Laudos"></h3>
+		
+			</form>
 		</c:if>
 		
 		<c:if test="${sessionScope.categoria == 'Médico'}">
@@ -32,7 +38,11 @@
 		</c:if>
 		
 		<c:if test="${sessionScope.categoria == 'Médico Docente'}">
-			<h2><a href="pedir-exame.jsp">Avaliar Laudos </a></h2>
+			<form method="post" action="controladora" >
+				<input type="hidden" name="logica" value="ObterLaudosParaAvaliacao">
+				<h3> <input type="submit" value="Avaliar Laudos"></h3>
+		
+			</form>
 		</c:if>
 	</body>
 </html>

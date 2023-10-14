@@ -73,6 +73,21 @@ public class ExameDAO {
 		
 	}
 	
+	public boolean realizaLaudoExame(Exame exame) {
+		String sql = "UPDATE exame SET situacao=? WHERE id=?";
+		try (PreparedStatement stm = connection.prepareStatement(sql)) {
+			stm.setString(1, exame.getSituacao().getDescricao());
+			stm.setLong(2, exame.getId());
+			
+			stm.execute();
+			return true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
 	
 	public List<Exame> getExamesDoPaciente(TiposDeExames tipo, String cpfPaciente) {
 	    return getExamesPorFiltro("SELECT * FROM exame WHERE tipo=? and cpf=?", tipo.getDescricao(), cpfPaciente );
@@ -82,20 +97,8 @@ public class ExameDAO {
 	    return getExamesPorFiltro(String.format("SELECT * FROM exame WHERE datapedido = CURRENT_DATE - INTERVAL '%d days' and situacao ='%s'", DIAS_DE_ESPERA,SituacaoExame.AGUARDANDO_EXAME.getDescricao()) , new String[0]);
 	}
 	
-	public Exame getExameByID(Long id) {
-	  String sql = "SELECT * FROM exame WHERE id=?";
-	  Exame exame = null;
-	  try (PreparedStatement stm = connection.prepareStatement(sql)) {
-		  	stm.setLong(1, id);
-	        ResultSet rs = stm.executeQuery();
-	        while (rs.next()) 
-	          exame = obterExameFromResultSet(rs); 
-	        
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	  
-	  return exame;
+	public List<Exame> getExamesAguardandoLaudo() {
+		return getExamesPorFiltro(String.format("SELECT * FROM exame WHERE situacao='%s'", SituacaoExame.AGUARDANDO_LAUDO.getDescricao()), new String[0]);
 	}
 	
 	private List<Exame> getExamesPorFiltro(String sql, String... parametros) {
@@ -118,7 +121,25 @@ public class ExameDAO {
 	    System.out.println(exames.size());
 	    return exames;
 	}
-
+	
+	public Exame getExameByID(Long id) {
+	  String sql = "SELECT * FROM exame WHERE id=?";
+	  Exame exame = null;
+	  try (PreparedStatement stm = connection.prepareStatement(sql)) {
+		  	stm.setLong(1, id);
+	        ResultSet rs = stm.executeQuery();
+	        while (rs.next()) 
+	          exame = obterExameFromResultSet(rs); 
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	  if(exame!=null)
+		  System.out.println("Exame = "+exame.getId() );
+	  return exame;
+	}
+	
+	
 
 	public Exame obterExameFromResultSet(ResultSet rs) {
 		// TODO Auto-generated method stub

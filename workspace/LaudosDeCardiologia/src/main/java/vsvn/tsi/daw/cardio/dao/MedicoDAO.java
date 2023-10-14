@@ -56,7 +56,6 @@ public class MedicoDAO {
 	
 	public Medico validaCredencial(String crm, String senha) {
 		String sql = "select * from medico where crm=? and senha=?";
-//		System.out.println(String.format("crm = %s\nSenha = %s", crm,senha));
 		Medico medico = null;
 		try (PreparedStatement stmt = connection.prepareStatement(sql)){
 			stmt.setString(1, crm);
@@ -67,9 +66,8 @@ public class MedicoDAO {
 				medico.setSenha(rs.getString(SENHA));
 			}
 		} catch (SQLException e) {
-		
+			return null;
 		}
-		System.out.println(medico.getCrm() + " " + medico.getSenha());
 		return medico;
 	}
 	

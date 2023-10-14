@@ -25,7 +25,6 @@ public class RealizarExame implements Logica{
 		PdfExame.generatePDFWithRandomImages(String.format("%s/%s", Files.PDFS_IMAGENS,exame.getTipo().getDescricao().toLowerCase()) , String.format("%s%s/%d.pdf", Files.PASTA_PDFS,exame.getCpf(),exame.getId()),3);
 		if(dao.realizaExame(exame))
 			return "realizar-exame-sucesso.jsp";
-		System.out.println("Deu bosta");
 		
 		return "errors/erro-realizar-exame.jsp";
 	}
