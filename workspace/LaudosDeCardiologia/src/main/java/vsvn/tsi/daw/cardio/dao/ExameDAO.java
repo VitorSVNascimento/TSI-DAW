@@ -1,12 +1,19 @@
 package vsvn.tsi.daw.cardio.dao;
 
-import static vsvn.tsi.daw.cardio.constantes.AtributosTabela.*;
+import static vsvn.tsi.daw.cardio.constantes.AtributosTabela.CPF;
+import static vsvn.tsi.daw.cardio.constantes.AtributosTabela.CRM;
+import static vsvn.tsi.daw.cardio.constantes.AtributosTabela.DATA_E_HORA_REALIZACAO;
+import static vsvn.tsi.daw.cardio.constantes.AtributosTabela.DATA_PEDIDO;
+import static vsvn.tsi.daw.cardio.constantes.AtributosTabela.HIPOTESE;
+import static vsvn.tsi.daw.cardio.constantes.AtributosTabela.ID;
+import static vsvn.tsi.daw.cardio.constantes.AtributosTabela.SITUACAO;
+import static vsvn.tsi.daw.cardio.constantes.AtributosTabela.TIPO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -20,6 +27,7 @@ import vsvn.tsi.daw.cardio.modelo.Exame;
 
 public class ExameDAO {
 	private Connection connection;
+	private int DIAS_DE_ESPERA = 3;
 	
 	public ExameDAO() {
 		this.connection = FabricaConexao.getConnection();
@@ -47,27 +55,68 @@ public class ExameDAO {
 		
 	}
 	
+	public boolean realizaExame(Exame exame) {
+	  String sql = "UPDATE exame SET situacao=?, data_e_hora_realizacao=? WHERE id=?";
+	  try (PreparedStatement stm = connection.prepareStatement(sql)) {
+		  	stm.setString(1, exame.getSituacao().getDescricao());
+		  	Timestamp dataHoraRealizacao = new Timestamp(exame.getData_e_hora_realizacao().getTimeInMillis());
+		  	stm.setTimestamp(2, dataHoraRealizacao);
+		  	stm.setLong(3, exame.getId());
+		  	
+		  	stm.execute();
+		  	return true;
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+		
+	}
+	
+	
 	public List<Exame> getExamesDoPaciente(TiposDeExames tipo, String cpfPaciente) {
-		List<Exame> exames = new ArrayList<Exame>();
-		
-		String sql = "SELECT * FROM exame WHERE tipo=? and cpf=?";
-		try(PreparedStatement stm = connection.prepareStatement(sql)){
-			stm.setString(1, tipo.getDescricao());
-			stm.setString(2, cpfPaciente);
-			ResultSet rs = stm.executeQuery();
-			while(rs.next()) {
-				Exame exame =  obterExameFromResultSet(rs);
-				if(exame != null)
-					exames.add(exame);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		
-		return exames;
-		
-		
+	    return getExamesPorFiltro("SELECT * FROM exame WHERE tipo=? and cpf=?", tipo.getDescricao(), cpfPaciente );
+	}
+
+	public List<Exame> getExamesDoDia() {
+	    return getExamesPorFiltro(String.format("SELECT * FROM exame WHERE datapedido = CURRENT_DATE - INTERVAL '%d days' and situacao ='%s'", DIAS_DE_ESPERA,SituacaoExame.AGUARDANDO_EXAME.getDescricao()) , new String[0]);
+	}
+	
+	public Exame getExameByID(Long id) {
+	  String sql = "SELECT * FROM exame WHERE id=?";
+	  Exame exame = null;
+	  try (PreparedStatement stm = connection.prepareStatement(sql)) {
+		  	stm.setLong(1, id);
+	        ResultSet rs = stm.executeQuery();
+	        while (rs.next()) 
+	          exame = obterExameFromResultSet(rs); 
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	  
+	  return exame;
+	}
+	
+	private List<Exame> getExamesPorFiltro(String sql, String... parametros) {
+		System.out.println("Entrou");
+	    List<Exame> exames = new ArrayList<Exame>();
+	    try (PreparedStatement stm = connection.prepareStatement(sql)) {
+	        for (int i = 0; i < parametros.length; i++) {
+	            stm.setString(i + 1, parametros[i]);
+	        }
+	        ResultSet rs = stm.executeQuery();
+	        while (rs.next()) {
+	            Exame exame = obterExameFromResultSet(rs);
+	            if (exame != null)
+	                exames.add(exame);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    System.out.println(exames.size());
+	    return exames;
 	}
 
 

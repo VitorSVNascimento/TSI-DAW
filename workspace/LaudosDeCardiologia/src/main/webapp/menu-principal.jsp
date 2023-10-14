@@ -9,14 +9,28 @@
 		<title>Menu-Principal</title>
 	</head>
 	<body>
-		<h1>Este é o menu principal</h1>
-		<h2>${sessionScope.categoria }</h2>
+		<h1>Bem Vindo! ${sessionScope.nome_medico}</h1>
+		
+		<form method="post" action="controladora" >
+		<input type="hidden" name="logica" value="EfetuaLogout">
+		<h3> <input type="submit" value="Clique para fazer logout"></h3>
+		
+		</form>
+		<h2>${sessionScope.categoria}</h2>
+		
 		<c:if test="${sessionScope.categoria == 'Médico Residente'}">
-			<h2><a href="realizar-exame.jsp">Realizar exame </a></h2>
+			
+			<form method="post" action="controladora" >
+				<input type="hidden" name="logica" value="ObterExames">
+				<h3> <input type="submit" value="Exames do dia"></h3>
+		
+			</form>
 		</c:if>
+		
 		<c:if test="${sessionScope.categoria == 'Médico'}">
 			<h2><a href="pedir-exame-cpf.jsp">Efatuar Pedido de Exame </a></h2>
 		</c:if>
+		
 		<c:if test="${sessionScope.categoria == 'Médico Docente'}">
 			<h2><a href="pedir-exame.jsp">Avaliar Laudos </a></h2>
 		</c:if>

@@ -2,15 +2,24 @@ package vsvn.tsi.daw.cardio.testes;
 
 import java.util.List;
 
+import vsvn.tsi.daw.cardio.constantes.Files;
 import vsvn.tsi.daw.cardio.dao.MedicoDAO;
+import vsvn.tsi.daw.cardio.enums.TiposDeExames;
 import vsvn.tsi.daw.cardio.modelo.Medico;
+import vsvn.tsi.daw.cardio.pdf.PdfExame;
 
 public class CardioTestes {
 
 	public static void main(String[] args) {
 		//testeMedico();
 		//testeEmail();
+		testePdf();
 
+	}
+
+	private static void testePdf() {
+		PdfExame.generatePDFWithRandomImages(String.format("%s/%s", Files.PDFS_IMAGENS,TiposDeExames.ECOCARDIOGRAMA.getDescricao().toLowerCase()) , Files.PASTA_PDFS+"120/5.pdf",3);
+		
 	}
 
 	public static void testeEmail() {
@@ -30,7 +39,7 @@ public class CardioTestes {
 	}
 	
   
-
+	
 	
 
 
