@@ -4,16 +4,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Pagina de exame</title>
+<link rel="stylesheet" href="webjars/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
-<body>
-	<form method="post" action="controladora">
-		CPF do paciente: <input type="text" name="cpf">
-		<input type="hidden" name="logica" value="ObterLaudosPaciente">
-		<input type="submit">
-	</form>
-	
+<body class="align-middle">
+	<div class="container">
+
+		<form method="post" action="controladora">
+		<div class="mb-3 mt-5">
+			<label class="form-label" for="cpf_input">CPF do paciente</label>
+			 <input class="form-control" id="cpf_input" type="text" name="cpf">
+		
+		</div>
+			<input type="hidden" name="logica" value="ObterLaudosPaciente">
+			<div class="mt-3">
+				<input class="btn btn-primary" type="submit" value="Buscar">
+			
+			</div>
+		</form>
+
+	</div>
 	
 </body>
-</html>
+</html> 

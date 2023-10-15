@@ -7,48 +7,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="webjars/bootstrap/5.0.2/css/bootstrap.min.css">
 <title>Pagina de exame</title>
 </head>
-<body>
-	<h1>Exames do dia</h1>
+  <body class="align-middle">
+	<div class="container">
 	
-	<table border="1px">
 	
-		<thead>
-			<tr>
-				<th>CPF do paciente</th>
-				<th>Tipo do exame</th>
-				<th>Hipótese</th>
-				<th>CRM do médico</th>
-				<th>Realizar exame</th>
-			
-			</tr>
+		<h1>Exames do dia</h1>
 		
-		</thead>
+	<table class="table table-info table-striped table-hover align-middle">
 		
-		<c:forEach items="${sessionScope.exames}" var="exame">
+			<thead>
+				<tr class="text-center align-middle">
+					<th>CPF do paciente</th>
+					<th>Tipo do exame</th>
+					<th>Hipótese</th>
+					<th>CRM do médico</th>
+					<th>Realizar exame</th>
+				
+				</tr>
 			
-			<tr>
-				 <td>${exame.cpf}</td>
-				 <td>${exame.tipo.getDescricao()}</td>
-				 <td>${exame.hipotese.toString()}</td>
-				 <td>${exame.crm}</td>
-				 <td>
-				 	<form method="post" action="controladora">
-				 		<input type="hidden" name="id_exame" value="${exame.id}">
-				 		<input type="hidden" name="logica" value="RealizarExame">
-				 		<input type="submit" value="Realizar exame">
-				 	</form>
-				 </td>
+			</thead>
 			
-			</tr>
+			<c:forEach items="${sessionScope.exames}" var="exame">
+				
+				<tr>
+					 <td>${exame.cpf}</td>
+					 <td>${exame.tipo.getDescricao()}</td>
+					 <td>${exame.hipotese.toString()}</td>
+					 <td>${exame.crm}</td>
+					 <td>
+					 	<form method="post" action="controladora">
+					 		<input type="hidden" name="id_exame" value="${exame.id}">
+					 		<input type="hidden" name="logica" value="RealizarExame">
+					 		<input class="btn btn-success" type="submit" value="Realizar exame">
+					 	</form>
+					 </td>
+				
+				</tr>
+				
 			
+			</c:forEach>	
 		
-		</c:forEach>	
-	
-	
-	</table>
+		
+		</table>
+	</div>
 	
 </body>
 </html>

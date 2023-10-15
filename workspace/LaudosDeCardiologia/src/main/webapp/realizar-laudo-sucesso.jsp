@@ -7,7 +7,7 @@
 <title>Laudo Autorizado com sucesso</title>
 </head>
 <body>
-<h1>Laudo autorizado e disponibilizado para consulta</h1>
+<h1>Laudo disponivel para avaliação</h1>
 <a href="menu-principal.jsp">Voltar para o menu principal</a>
 </body>
 </html>

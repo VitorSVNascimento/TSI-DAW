@@ -1,6 +1,6 @@
 <%@page import="vsvn.tsi.daw.cardio.dao.PacienteDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+    pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@include file="autenticacaoDemaisMedicos.jsp" %> 
@@ -10,21 +10,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Pagina de laudos</title>
-
+<link rel="stylesheet" href="webjars/bootstrap/5.0.2/css/bootstrap.min.css">
 </head>
 
 
-<body>
-	<h1>Laudos a serem avaliados</h1>
+  <body class="align-middle">
+  <div class="container">
+  
+  
+	<h1>Laudos do paciente</h1>
 	
-	<table border="1px">
+	<table class="table table-info table-striped table-hover">
 	
 		<thead>
-			<tr>
+			<tr class="text-center">
 				<th>id do exame</th>
 				<th>CPF do paciente</th>
 				<th>Data e hora da realizacao</th>
-				<th>Descricao</th>
+				<th >Descricao</th>
 				<th>Conclusao</th>
 				<th>CRM do residente</th>
 				<th>Visualizar as imagens do exame</th>
@@ -44,7 +47,7 @@
 				 <td>${laudo.crm}</td>
 				 <td id="pdf_viewr">
 				 
-					 <a href="#" id="pdf_viewer_${loop.index}">Clique para abrir o PDF</a>	
+					 <a class="btn btn-success" href="#" id="pdf_viewer_${loop.index}">Clique para abrir o PDF</a>	
 				 
 				 </td>
 			
@@ -55,6 +58,7 @@
 	
 	
 	</table>
+  </div>
 	
 	<script>
 		document.addEventListener("DOMContentLoaded", function () {
