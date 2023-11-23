@@ -1,0 +1,49 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#f2eeeef0;
+}
+
+h1{
+    text-align: center;
+}
+
+.pdf-container {
+     width: 100%;
+     height: 800px; /* Altura fixa ou outra altura desejada */
+     overflow: auto; /* Permite a rolagem se o PDF for maior que a altura */
+}
+
+input[type="text"] {
+    border: 1px solid #9b9b9b; /* Cor da borda */
+    background-color: #ccc; /* Cor de fundo */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 5px; /* Borda arredondada */
+    width: 90%; 
+}
+
+p{
+    display: block;
+    margin-bottom: 10px;
+    margin-left: 30px;
+}
+
+.pdf-container {
+    overflow: auto; /* Permite a rolagem se o PDF for maior que a altura */
+}
+
+
+#input{
+    text-align: center;
+}
+
+#input input{
+    background-color: #2A77EB;
+    color:white;
+    text-align: center;
+    border: 1px solid #2A77EB;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 30px;
+}

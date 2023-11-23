@@ -1,0 +1,34 @@
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-color: #2A77EB;
+      color: white;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .medcar {
+      display: flex;
+      align-items: center;
+    }
+    .medcar img {
+      width: 50px;
+      margin-right: 10px;
+    }
+
+    a{
+      text-decoration: none;
+    }
+
+    .sair {
+      background-color: white;
+      color: #2A77EB;
+      border: 1px solid #2A77EB;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+

@@ -1,0 +1,43 @@
+body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#f2eeeef0;
+}
+
+h1{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+#mensagem{
+    margin-top: 40px;
+}
+
+form{
+    border: 5px solid #bababa;
+    border-radius: 10px;
+    width: 400px;
+    height: 270px;
+    margin: 0 auto;
+}
+
+p{
+    display: block;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#input{
+    text-align: center;
+}
+
+#input input{
+    background-color: #2A77EB;
+    color:white;
+    text-align: center;
+    border: 1px solid #2A77EB;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 30px;
+}

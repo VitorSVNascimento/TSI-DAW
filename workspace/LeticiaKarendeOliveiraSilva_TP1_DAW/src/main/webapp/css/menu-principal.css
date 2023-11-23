@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:#f2eeeef0;
+}
+
+h1 {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.container {
+    border: 5px solid #bababa;
+    border-radius: 10px;
+    width: 600px;
+    height: 300px;
+    margin: 0 auto 0 auto;
+}
+
+.container img{
+    float: left;
+    margin-top: 20px;
+    width: 300px;
+    height: 250px;
+}
+
+.container form button{
+    float: right;
+    display: flex;
+    margin: auto 0;
+    background-color: #2A77EB;
+    color: white;
+    border: 1px solid #2A77EB;
+    margin-top: 10px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    line-height: 30px; /* Ajuste a altura conforme necessário */
+}
