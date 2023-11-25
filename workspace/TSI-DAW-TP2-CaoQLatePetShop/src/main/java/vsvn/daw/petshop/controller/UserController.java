@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpSession;
 import vsvn.daw.petshop.dao.AccountDAO;
 import vsvn.daw.petshop.dao.ConfirmationTokenDAO;
 import vsvn.daw.petshop.dao.DAO;
@@ -14,7 +15,7 @@ import vsvn.daw.petshop.models.ConfirmationToken;
 @Controller
 public class UserController {
 	
-	@RequestMapping("/")
+	@RequestMapping("index")
 	public String index() {
 		return "index";
 	}
@@ -55,6 +56,29 @@ public class UserController {
 		accDAO.update(acc);
 		return "account/validado";
 		
+	}
+	
+	@RequestMapping("login-page")
+	public String loginPage() {
+		return "login";
+	}
+	
+	@RequestMapping("login-validate")
+	public String loginValidate(Account account,HttpSession session) {
+		account = new AccountDAO(Account.class).loginVerify(account); 
+		if(account  == null) {
+			System.out.println("Account nula");
+			return "redirect:login-page";
+			
+		}
+		session.setAttribute("user", account);
+		return "redirect:index";
+	}
+	
+	@RequestMapping("logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:login-page";
 	}
 	
 }

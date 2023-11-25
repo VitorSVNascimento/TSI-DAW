@@ -11,7 +11,7 @@
 <body>
 		<h3> Novo Cliente</h3>
 		
-		<form action="adicionarConta">
+		<form action="adicionarConta" method="post">
 			Nome: <input type="text" name="name">
 			CPF: <input type="text" name="cpf">
 			Data de Nascimento:<input type="date" name="birthday">
@@ -20,7 +20,7 @@
 			Telefone: <input type="text" name="telephone">
 			
 			
-			<input type="submit" value="Gravar">
+			<input type="submit" value="Registrar">
 		</form>
 </body>
 </html>

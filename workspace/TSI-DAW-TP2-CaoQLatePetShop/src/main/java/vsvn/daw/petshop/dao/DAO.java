@@ -43,16 +43,30 @@ public class DAO<T> {
 	}
 	
 	public T getById(Long id) {
-		EntityManager em = new JPAUtil().getEntityManager();
-		return em.find(objectClass, id);
+		try(EntityManager em = getEntityManager()){
+			
+			return em.find(objectClass, id);
+		}catch (Exception e) {
+			return null;
+		}
+		
 	}
 	
 	public List<T> getAll() {
-		EntityManager em = new JPAUtil().getEntityManager();
-		CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(objectClass);
-		query.select(query.from(objectClass));
-		List<T> list = em.createQuery(query).getResultList();
-		return list;
+		try(EntityManager em = getEntityManager()){
+			CriteriaQuery<T> query = em.getCriteriaBuilder().createQuery(objectClass);
+			query.select(query.from(objectClass));
+			List<T> list = em.createQuery(query).getResultList();
+			return list;
+			
+		}catch (Exception e) {
+			return null;
+		}
+		
+	}
+	
+	protected EntityManager getEntityManager() {
+		return new JPAUtil().getEntityManager();
 	}
 	
 }

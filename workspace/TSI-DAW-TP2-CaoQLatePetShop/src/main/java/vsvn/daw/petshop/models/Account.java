@@ -1,14 +1,18 @@
 package vsvn.daw.petshop.models;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -28,15 +32,19 @@ public class Account {
 	private String name;
 	
 	@Size(min = 11,max = 11,message = "O CPF deve conter 11 digitos")
-	@Pattern(regexp = "^[0-9]+$")
+	@Pattern(regexp = "^[0-9]+$", message = "O CPF deve conter apenas números")
 	@Column(unique = true)
 	private String cpf;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Calendar birthday;
+	@Column(unique = true)
 	private String email;
 	private String password;
 	private String telephone;
 	private Boolean valid;
+	
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy = "account")
+	private List<Dog> dogs = new ArrayList<Dog>();
 	public Long getId() {
 		return id;
 	}
@@ -84,6 +92,12 @@ public class Account {
 	}
 	public void setValid(Boolean valid) {
 		this.valid = valid;
+	}
+	public List<Dog> getDogs() {
+		return dogs;
+	}
+	public void setDogs(List<Dog> dogs) {
+		this.dogs = dogs;
 	}
 	
 	
