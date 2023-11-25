@@ -2,9 +2,14 @@ package vsvn.daw.petshop.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import vsvn.daw.petshop.dao.AccountDAO;
+import vsvn.daw.petshop.dao.ConfirmationTokenDAO;
 import vsvn.daw.petshop.dao.DAO;
+import vsvn.daw.petshop.email.PetShopEMail;
 import vsvn.daw.petshop.models.Account;
+import vsvn.daw.petshop.models.ConfirmationToken;
 
 @Controller
 public class UserController {
@@ -14,16 +19,42 @@ public class UserController {
 		return "index";
 	}
 	
-	@RequestMapping("novoCliente")
+	@RequestMapping("novaConta")
 	public String formNewClient() {
-		return "cliente/novoCliente";
+		return "account/novaConta";
 	}
 	
-	@RequestMapping("adicionaCliente")
+	@RequestMapping("adicionarConta")
 	public String insert(Account user) {
-		DAO<Account> dao = new DAO<>(Account.class);
+		AccountDAO dao = new AccountDAO(Account.class);
 		dao.insert(user);
-		return "cliente/adicionado";
+		
+		String token_string = PetShopEMail.sendConfirmationLinkToUser(user.getName(), user.getEmail());
+		
+		ConfirmationToken token = new ConfirmationToken();
+		Account account = dao.getByCpf(user.getCpf());
+		System.out.println("Aloooo = " + account.getId());
+		token.setAccount(account);
+		token.setToken(token_string);
+		
+		DAO<ConfirmationToken> tokenDAO = new DAO<ConfirmationToken>(ConfirmationToken.class);
+		tokenDAO.insert(token);
+		
+		return "account/adicionado";
+	}
+	
+//	http://127.0.0.1/validate-email?token=%s
+	@RequestMapping("validate-email")
+	public String validateAccountEmail(@RequestParam String token) {
+		ConfirmationTokenDAO dao = new ConfirmationTokenDAO(ConfirmationToken.class);
+		ConfirmationToken tokenData = dao.getByToken(token);
+		Account acc = tokenData.getAccount();
+		acc.setValid(true);
+		
+		DAO<Account> accDAO = new DAO<Account>(Account.class);
+		accDAO.update(acc);
+		return "account/validado";
+		
 	}
 	
 }

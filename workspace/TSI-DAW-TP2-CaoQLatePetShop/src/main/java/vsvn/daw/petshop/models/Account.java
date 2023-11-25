@@ -2,6 +2,9 @@ package vsvn.daw.petshop.models;
 
 import java.util.Calendar;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,12 +29,14 @@ public class Account {
 	
 	@Size(min = 11,max = 11,message = "O CPF deve conter 11 digitos")
 	@Pattern(regexp = "^[0-9]+$")
+	@Column(unique = true)
 	private String cpf;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Calendar birthday;
-	
 	private String email;
 	private String password;
 	private String telephone;
+	private Boolean valid;
 	public Long getId() {
 		return id;
 	}
@@ -74,6 +79,13 @@ public class Account {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
+	public Boolean getValid() {
+		return valid;
+	}
+	public void setValid(Boolean valid) {
+		this.valid = valid;
+	}
+	
 	
 	
 }

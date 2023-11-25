@@ -21,6 +21,11 @@ public class DAO<T> {
 		em.close();
 	}
 	
+	
+	protected Class<T> getObjectClass() {
+		return objectClass;
+	}
+
 	public void update(T t) {
 		EntityManager em = new JPAUtil().getEntityManager();
 		em.getTransaction().begin();

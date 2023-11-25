@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Um novo cliente foi adicionado</h1>
+<h1>Seu email foi validado, por favor volte a página principal e faça login</h1>
 </body>
 </html>
