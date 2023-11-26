@@ -1,4 +1,5 @@
 package vsvn.daw.petshop.dao;
+import java.util.Arrays;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
@@ -6,9 +7,9 @@ import jakarta.persistence.Query;
 import vsvn.daw.petshop.db.JPAUtil;
 import vsvn.daw.petshop.models.Account;
 import vsvn.daw.petshop.models.Service;
-public class ServiceDAO extends DAO<Account> {
+public class ServiceDAO extends DAO<Service> {
 
-	public ServiceDAO(Class<Account> objectClass) {
+	public ServiceDAO(Class<Service> objectClass) {
 		super(objectClass);
 		
 	}
@@ -29,8 +30,19 @@ public class ServiceDAO extends DAO<Account> {
 		
 	}
 	
-	public List<Service> getByName(String... names){
-		
+	public List<Service> getByName(List<String> names){
+	    EntityManager em = new JPAUtil().getEntityManager();
+	    
+	    // Convertemos os nomes para uma lista para uso na consulta
+
+	    Query query = em.createQuery("SELECT s FROM Service s WHERE s.name IN :names", Service.class);
+	    query.setParameter("names", names);
+
+	    List<Service> services = query.getResultList();
+	    
+	    em.close();
+	    
+	    return services;	
 	}
 	
 	public Account loginVerify(Account account) {
@@ -57,6 +69,21 @@ public class ServiceDAO extends DAO<Account> {
 		}
 		
 	}
+	
+	  public List<Service> getByIds(List<Long> ids) {
+	        EntityManager em = getEntityManager();
+
+	        // Use o JPQL para construir a consulta
+	        Query query = em.createQuery("SELECT s FROM Service s WHERE s.id IN :ids", Service.class);
+	        query.setParameter("ids", ids);
+
+	        // Execute a consulta e retorne a lista de serviços
+	        List<Service> serviceList = query.getResultList();
+
+	        em.close();
+	        return serviceList;
+	    }
+	
 	
 	
 }

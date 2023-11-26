@@ -25,10 +25,11 @@
 			<form:select path="dog.id">
     			<form:options items="${dogs}" itemLabel="name" itemValue="id" />
 			</form:select>
-
-			<c:forEach items="${services}" var="petshop_service">
-	        		<c:out value="${petshop_service.name}"></c:out><input type="checkbox" name="services" value="${petshop_service}">
-    		</c:forEach>
+			
+		
+			 <form:checkboxes items="${services_type}" path="services" itemLabel="name" itemValue="id" />
+		
+			
 			<input type="submit" value="Registrar">
 		</form:form>		
 	</body>

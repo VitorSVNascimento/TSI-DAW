@@ -14,7 +14,7 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
 		
 		if(uri.endsWith("login-page") || uri.endsWith("login-validate") || uri.endsWith("novaConta") || uri.endsWith("adicionarConta")
 			|| uri.endsWith("validate-email") || uri.endsWith("formulario-admin")|| 
-		 uri.endsWith("admin-validate")	|| uri.contains("resources"))
+		 uri.endsWith("admin-validate")	|| uri.contains("resources") )
 			return true;
 		
 		//Páginas do administrador
