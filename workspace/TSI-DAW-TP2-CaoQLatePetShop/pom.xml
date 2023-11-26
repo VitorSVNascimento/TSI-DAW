@@ -43,18 +43,18 @@
 
 		<!-- Hibernate Validator -->
 		<dependency>
-			<groupId>org.hibernate.validator</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>8.0.1.Final</version>
-		</dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.2.Final</version> 
+            <!-- Versão atualizada do Hibernate Validator -->
+        </dependency>
 
-		<!-- Jakarta EE Validation API -->
-		<dependency>
-			<groupId>jakarta.validation</groupId>
-			<artifactId>jakarta.validation-api</artifactId>
-			<version>3.0.2</version>
-			<scope>provided</scope>
-		</dependency>
+        <!-- Jakarta EE Validation API -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>
 
 		<!-- JSTL Tags Dependencies-->
 		<dependency>

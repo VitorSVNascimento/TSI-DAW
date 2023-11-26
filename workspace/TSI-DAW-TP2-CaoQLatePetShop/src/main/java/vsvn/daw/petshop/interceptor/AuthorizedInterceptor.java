@@ -18,11 +18,13 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
 			return true;
 		
 		//Páginas do administrador
-		if(req.getSession().getAttribute("employee") != null && (uri.endsWith("admin-page") || uri.endsWith("employee-logout")))
+		if(req.getSession().getAttribute("employee") != null && (uri.endsWith("admin-page") || uri.endsWith("employee-logout")
+				|| uri.endsWith("service-page") || uri.endsWith("registrar-servico")))
 			return true;
 		
 		//Páginas do usuário
-		if(req.getSession().getAttribute("user") != null && (!uri.endsWith("admin-page") || !uri.endsWith("employee-logout")))
+		if(req.getSession().getAttribute("user") != null && (!uri.endsWith("admin-page") || !uri.endsWith("employee-logout")
+				|| !uri.endsWith("service-page") || !uri.endsWith("registrar-servico")))
 			return true;
 		
 		resp.sendRedirect("login-page");

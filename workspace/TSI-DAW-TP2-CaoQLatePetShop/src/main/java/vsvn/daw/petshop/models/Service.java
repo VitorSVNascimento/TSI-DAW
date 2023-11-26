@@ -6,11 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
 @Entity
-public class Services {
+public class Service {
 	@Id
 	@SequenceGenerator(
 			name = "service_id",
@@ -19,7 +18,7 @@ public class Services {
 			)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "service_id")
 	private Long id;
-	@Size(min = 2, message = "O nome deve conter no minimo 2 caracteres")
+	@Size(min = 3, message = "O nome deve conter no minimo 3 caracteres")
 	private String name;
 	@DecimalMin(value = "0.01",message = "O valor do serviço deve maior que 0")
 	private Float price;
