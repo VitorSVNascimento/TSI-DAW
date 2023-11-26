@@ -40,9 +40,11 @@ public class SchedulingController {
 			return "scheduling/scheduling-form";
 		DogDAO dogDao = new DogDAO(Dog.class);
 		Dog dog = dogDao.getById(dogId);
+		System.out.println("Dog name = "+dog.getName());
 		DAO<Scheduling> dao = new DAO<Scheduling>(Scheduling.class);
 		for(Service s : scheduling.getServices())
 			System.out.println(s.getName());
+		scheduling.setState("Em aguardo");
 		
 		scheduling.setDog(dog);
 		dao.insert(scheduling);
