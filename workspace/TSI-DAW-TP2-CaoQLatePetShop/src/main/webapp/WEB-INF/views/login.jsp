@@ -11,6 +11,10 @@
 		<jsp:include page="cabecalho.jsp"></jsp:include>
 		<h1>Prencha os dados para fazer login</h1>
 		
+		<c:if test="${not empty message}">
+			<h2>${message}</h2>
+		</c:if>
+		
 		<form action="login-validate" method="post">
 		
 			Email:<input type="text" name="email">

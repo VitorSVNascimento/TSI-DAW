@@ -21,9 +21,13 @@
 			function buscarLista(calendar) {
 				$.post("get-scheduling-admin-byDate",{'calendar':calendar},function(resposta){
 					$("#table_div").html(resposta);
-			
-				    
 					
+				})
+			}
+			
+			function realizarServico(id){
+				$.post("make-scheduling",{"id":id},function(){
+					$("#service_"+id).closest("tr").hide();
 				})
 			}
 		

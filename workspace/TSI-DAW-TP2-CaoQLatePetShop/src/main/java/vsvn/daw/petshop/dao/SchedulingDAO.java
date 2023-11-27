@@ -5,8 +5,6 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import jakarta.transaction.Transactional;
-import vsvn.daw.petshop.models.Account;
-import vsvn.daw.petshop.models.Dog;
 import vsvn.daw.petshop.models.Scheduling;
 public class SchedulingDAO extends DAO<Scheduling> {
 
@@ -43,6 +41,46 @@ public class SchedulingDAO extends DAO<Scheduling> {
 					Scheduling.class);
 			query.setParameter("state", "Em aguardo");
 			query.setParameter("cur_date", date);
+			
+			@SuppressWarnings("unchecked")
+			List<Scheduling> scheduling= query.getResultList();
+			
+			return scheduling;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	@Transactional
+	public List<Scheduling> getProvidedSchedulingAdminByDateInterval(Calendar inclusiveInitDate, Calendar inclusiveEndDate) {
+		try (EntityManager em = super.getEntityManager()){
+			
+			Query query = em.createQuery("SELECT s FROM Scheduling s LEFT JOIN FETCH s.services WHERE s.state = :state AND s.schedulingDate >= :init_date AND s.schedulingDate <= :end_date",
+					Scheduling.class);
+			query.setParameter("state", "Realizado");
+			query.setParameter("init_date", inclusiveInitDate);
+			query.setParameter("end_date", inclusiveEndDate);
+			
+			@SuppressWarnings("unchecked")
+			List<Scheduling> scheduling= query.getResultList();
+			
+			return scheduling;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	@Transactional
+	public List<Scheduling> getExecutedService() {
+		try (EntityManager em = super.getEntityManager()){
+			
+			Query query = em.createQuery("SELECT s FROM Scheduling s LEFT JOIN FETCH s.services WHERE s.state = :state",
+					Scheduling.class);
+			query.setParameter("state", "Realizado");
 			
 			@SuppressWarnings("unchecked")
 			List<Scheduling> scheduling= query.getResultList();

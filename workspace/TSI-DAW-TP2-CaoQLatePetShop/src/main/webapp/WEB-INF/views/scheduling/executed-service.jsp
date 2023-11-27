@@ -9,41 +9,36 @@
 	<title>Serviços-Agendados</title>
 	</head>
 	<body>
-		<table id="service_table">
+		<h1>Serviços Realizados</h1>
+		
+		<table>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Data do Agendamento</th>
-                        <th>Dono</th>
                         <th>Cachorro</th>
                         <th>Serviços</th>
-                        <th>Cancelar</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                	
-                    <c:forEach var="service" items="${date_scheduling}" varStatus="id">
+                    <c:forEach var="service" items="${executed_services}" varStatus="id">
                         <tr id="service_${service.id}" bgcolor="${id.count % 2 != 0  ? 'ffffff' : 'cccccc'}">
-                            <td>${service.id}</td>
                             <td>
                                 <fmt:formatDate value="${service.schedulingDate.time}" pattern="dd/MM/yyyy"/>
                             </td>
-                            <td>${service.dog.account.name}</td>
                             <td>${service.dog.name}</td>
                             <td>
                                 <select >
                                     <c:forEach var="item" items="${service.services}">
-                                        <option value="${item.name}">${item.name}</option>
+                                        <option value="${item.name}">${item.name} -- R$ ${item.price}</option>
                                     </c:forEach>
                                 </select>
                             </td>
-                            <td class="btn-td">
-                                <span id="span_link_${service.id}"> </span> <a href="#"onclick="realizarServico(${service.id})">Realizar</a>
-                            </td>
-                            
+                            <td class="total-td">${service.ammount}</td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
+            
 	</body>
 </html>

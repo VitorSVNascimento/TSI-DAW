@@ -1,10 +1,13 @@
 package vsvn.daw.petshop.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import vsvn.daw.petshop.dao.AccountDAO;
 import vsvn.daw.petshop.dao.ConfirmationTokenDAO;
 import vsvn.daw.petshop.dao.DAO;
@@ -26,7 +29,10 @@ public class UserController {
 	}
 	
 	@RequestMapping("adicionarConta")
-	public String insert(Account user) {
+	public String insert(@Valid Account user, BindingResult binding,RedirectAttributes attibutes) {
+		
+		if(binding.hasFieldErrors())
+			return "account/novaConta";
 		AccountDAO dao = new AccountDAO(Account.class);
 		dao.insert(user);
 		
@@ -34,19 +40,19 @@ public class UserController {
 		
 		ConfirmationToken token = new ConfirmationToken();
 		Account account = dao.getByCpf(user.getCpf());
-		System.out.println("Aloooo = " + account.getId());
 		token.setAccount(account);
 		token.setToken(token_string);
 		
 		DAO<ConfirmationToken> tokenDAO = new DAO<ConfirmationToken>(ConfirmationToken.class);
 		tokenDAO.insert(token);
 		
-		return "account/adicionado";
+		attibutes.addFlashAttribute("message","Um link de confirmação foi enviado para o seu email");
+		return "redirect:novaConta";
 	}
 	
 //	http://127.0.0.1/validate-email?token=%s
 	@RequestMapping("validate-email")
-	public String validateAccountEmail(@RequestParam String token) {
+	public String validateAccountEmail(@RequestParam String token,RedirectAttributes attibutes) {
 		ConfirmationTokenDAO dao = new ConfirmationTokenDAO(ConfirmationToken.class);
 		ConfirmationToken tokenData = dao.getByToken(token);
 		Account acc = tokenData.getAccount();
@@ -54,7 +60,8 @@ public class UserController {
 		
 		DAO<Account> accDAO = new DAO<Account>(Account.class);
 		accDAO.update(acc);
-		return "account/validado";
+		attibutes.addFlashAttribute("message","Link validado, agora você já pode fazer login");
+		return "redirect:login-page";
 		
 	}
 	

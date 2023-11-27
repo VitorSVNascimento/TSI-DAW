@@ -19,13 +19,14 @@
 			<a href="formulario-cachorro">Registrar cachorro</a>
 			<a href="scheduling-form">Agendar atendimento</a>
 			<a href="servicos-agendados">Serviços Agendados</a>
+			<a href="excecuted-scheduling">Serviços Realizados</a>
 			<a href="logout">clique para fazer logout</a>
 		</c:if>
 
 		<c:if test="${not empty employee}">
 			<a href="service-page">Registrar serviço</a>
 			<a href="agenda-servico-admin">Agenda de serviços</a>
-			
+			<a href="provided-services-admin">Relatório de serviços prestados</a>			
 			<a href="employee-logout">clique para deslogar</a>
 		</c:if>
 		

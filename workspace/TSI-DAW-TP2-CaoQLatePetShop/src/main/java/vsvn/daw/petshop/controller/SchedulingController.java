@@ -1,8 +1,9 @@
 package vsvn.daw.petshop.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Pattern;
 import vsvn.daw.petshop.dao.DAO;
 import vsvn.daw.petshop.dao.DogDAO;
 import vsvn.daw.petshop.dao.SchedulingDAO;
@@ -72,9 +72,6 @@ public class SchedulingController {
 		for(Service s : final_services) 
 			total_ammount+=s.getPrice();
 		
-		if(final_services.size()>=3)
-			total_ammount -= total_ammount*0.03f;
-		
 		scheduling.setAmmount(total_ammount);
 		scheduling.setServices(serviceDao.getByIds(scheduling_service));
 		
@@ -94,9 +91,6 @@ public class SchedulingController {
  			if(s.getDog().getAccount().getId() == acc.getId())
  				byUser.add(s);
  		
- 		for(Scheduling s : byUser)
- 			System.out.println("aaa == "+s.getId());
- 		
  		model.addAttribute("scheduledService",byUser);
  		return "scheduling/scheduledService";
  	}
@@ -111,21 +105,78 @@ public class SchedulingController {
  	
  	@RequestMapping("get-scheduling-admin-byDate")
  	public String getSchedulingAdminByDate(@DateTimeFormat(pattern = "yyyy-MM-dd") Calendar calendar,HttpSession session) {
- 		System.out.println("Entrou na lógica");
  		List<Scheduling> schedulings = new SchedulingDAO(Scheduling.class).getScheduledAdmin(calendar);
- 		System.out.println("size ==="+schedulings.size());
  		session.setAttribute("date_scheduling", schedulings);
  		return "scheduling/find_by_date";
+ 	}
+ 	
+ 	@RequestMapping("provided-services-admin")
+ 	public String getProvidedScheduling(HttpSession session) {
+ 		session.setAttribute("interval_date_scheduling", new ArrayList<Scheduling>());
+ 		return "scheduling/provided-service-admin";
+ 	}
+
+ 	@RequestMapping("get-provided-scheduling-admin-byDate-interval")
+ 	public String getProvidedSchedulingAdminByDateInterval(@RequestParam("initDate") @DateTimeFormat(pattern = "yyyy-MM-dd") String initDate,
+ 	        @RequestParam("endDate") @DateTimeFormat(pattern = "yyyy-MM-dd") String endDate, HttpSession session) {
+ 		List<Scheduling> schedulings = new SchedulingDAO(Scheduling.class).getProvidedSchedulingAdminByDateInterval(convertStringToCalendar(initDate),convertStringToCalendar(endDate));
+ 		session.setAttribute("interval_date_scheduling", schedulings);
+ 		return "scheduling/find_by_date_interval";
+ 	}
+ 	
+ 	@RequestMapping("excecuted-scheduling")
+ 	public String getExecutedService(HttpSession session) {
+ 		Account acc = (Account)session.getAttribute("user");
+ 		List<Scheduling> schedulings = new ArrayList<Scheduling>();
+ 		for(Scheduling s : new SchedulingDAO(Scheduling.class).getExecutedService())
+ 			if(s.getDog().getAccount().getId() == acc.getId())
+ 				schedulings.add(s);
+ 		System.out.println("scheduling size ===="+ schedulings.size());
+ 		session.setAttribute("executed_services",schedulings);
+ 		return "scheduling/executed-service";
+ 		
+ 		
  	}
  	
  	@ResponseBody
  	@RequestMapping("cancel-scheduling")
  	public void cancelScheduling(Scheduling scheduling) {
+ 		setStatusScheduling(scheduling.getId(), "Cancelado");
+ 	}
+ 	
+ 	@ResponseBody
+ 	@RequestMapping("make-scheduling")
+ 	public void makeScheduling(Scheduling scheduling) {
+ 		setStatusScheduling(scheduling.getId(), "Realizado");
  		DAO<Scheduling> dao = new DAO<Scheduling>(Scheduling.class);
  		scheduling = dao.getById(scheduling.getId());
- 		scheduling.setState("Cancelado");
+ 		Float total = scheduling.getAmmount();
+ 		if(scheduling.getServices().size() >= 3)
+ 			total -= total*0.1f;
+ 			scheduling.setAmmount(total);
  		dao.update(scheduling);
- 		
  	}
+ 	
+ 	public void setStatusScheduling(Long id, String status) {
+ 		DAO<Scheduling> dao = new DAO<Scheduling>(Scheduling.class);
+ 		Scheduling scheduling = dao.getById(id);
+ 		scheduling.setState(status);
+ 		dao.update(scheduling);	
+ 	}
+ 	
+    public static Calendar convertStringToCalendar(String dateString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar calendar = Calendar.getInstance();
+
+        try {
+            calendar.setTime(sdf.parse(dateString));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // Trate a exceção, se necessário
+        }
+
+        return calendar;
+    }
+ 	
  	
 }

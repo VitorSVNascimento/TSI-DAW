@@ -17,12 +17,12 @@
                         <th>Dono</th>
                         <th>Cachorro</th>
                         <th>Serviços</th>
-                        <th>Cancelar</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                 	
-                    <c:forEach var="service" items="${date_scheduling}" varStatus="id">
+                    <c:forEach var="service" items="${interval_date_scheduling}" varStatus="id">
                         <tr id="service_${service.id}" bgcolor="${id.count % 2 != 0  ? 'ffffff' : 'cccccc'}">
                             <td>${service.id}</td>
                             <td>
@@ -33,13 +33,11 @@
                             <td>
                                 <select >
                                     <c:forEach var="item" items="${service.services}">
-                                        <option value="${item.name}">${item.name}</option>
+                                        <option value="${item.name}">${item.name} -- R$ ${item.price}</option>
                                     </c:forEach>
                                 </select>
                             </td>
-                            <td class="btn-td">
-                                <span id="span_link_${service.id}"> </span> <a href="#"onclick="realizarServico(${service.id})">Realizar</a>
-                            </td>
+                            <td class="total_class">${service.ammount}</td>
                             
                         </tr>
                     </c:forEach>
