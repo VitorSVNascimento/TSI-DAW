@@ -76,7 +76,9 @@ public class ServiceDAO extends DAO<Service> {
 	        // Use o JPQL para construir a consulta
 	        Query query = em.createQuery("SELECT s FROM Service s WHERE s.id IN :ids", Service.class);
 	        query.setParameter("ids", ids);
-
+	        
+	        
+	        
 	        // Execute a consulta e retorne a lista de serviços
 	        List<Service> serviceList = query.getResultList();
 

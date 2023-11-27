@@ -27,7 +27,10 @@
 			</form:select>
 			
 		
-			 <form:checkboxes items="${services_type}" path="services" itemLabel="name" itemValue="id" />
+			 <c:forEach var="serviceType" items="${services_types}">
+                 <input type="checkbox" name="scheduling_services" id="service${serviceType.id}" value="${serviceType.id}" />
+                 <label for="service${serviceType.id}">${serviceType.name}</label>
+             </c:forEach>
 		
 			
 			<input type="submit" value="Registrar">

@@ -19,12 +19,14 @@ public class AuthorizedInterceptor implements HandlerInterceptor {
 		
 		//Páginas do administrador
 		if(req.getSession().getAttribute("employee") != null && (uri.endsWith("admin-page") || uri.endsWith("employee-logout")
-				|| uri.endsWith("service-page") || uri.endsWith("registrar-servico")))
+				|| uri.endsWith("service-page") || uri.endsWith("registrar-servico") || uri.endsWith("agenda-servico-admin") 
+				|| uri.endsWith("get-scheduling-admin-byDate")))
 			return true;
 		
 		//Páginas do usuário
 		if(req.getSession().getAttribute("user") != null && (!uri.endsWith("admin-page") || !uri.endsWith("employee-logout")
-				|| !uri.endsWith("service-page") || !uri.endsWith("registrar-servico")))
+				|| !uri.endsWith("service-page") || !uri.endsWith("registrar-servico") || !uri.endsWith("agenda-servico-admin")
+				|| !uri.endsWith("get-scheduling-admin-byDate")))
 			return true;
 		
 		resp.sendRedirect("login-page");
