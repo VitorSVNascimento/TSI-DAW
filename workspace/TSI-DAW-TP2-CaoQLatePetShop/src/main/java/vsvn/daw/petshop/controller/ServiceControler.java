@@ -1,6 +1,8 @@
 package vsvn.daw.petshop.controller;
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +27,15 @@ public class ServiceControler {
 		
 		
 		DAO<Service> dao = new DAO<Service>(Service.class);
+		List<Service> services = dao.getAll();
+		for (Service s : services)
+			if(s.getName().equalsIgnoreCase(service.getName())) {
+				attibutes.addFlashAttribute("message","Esse serviço já está registrado!");
+				return "redirect:service-page"; 
+			}
+				
 		dao.insert(service);
-		attibutes.addFlashAttribute("message","Você registrou um serviço, agora vai ter que trabalhar mais.");
+		attibutes.addFlashAttribute("message","Novo serviço registrado!");
 		return "redirect:service-page"; 
 		
 	}

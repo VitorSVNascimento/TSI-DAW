@@ -21,6 +21,7 @@ public class Dog {
 	private Long id;
 	@Size(min = 2, message = "O nome do cachorro deve conter no minimo 2 caracteres")
 	private String name;
+	@Size(min = 2, message = "O nome da raça do cachorro deve conter no minimo 2 caracteres")
 	private String breed;
 	@Pattern(regexp = "^(?i)(pequeno|medio|grande)$", message = "O porte do animal deve ser um entre: Pequeno,médio e grande")
 	private String size;

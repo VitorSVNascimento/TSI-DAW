@@ -53,6 +53,11 @@ public class SchedulingController {
 		if(binding.hasErrors()) 
 			return "scheduling/scheduling-form";
 		
+		if(!new SchedulingDAO(Scheduling.class).verifyDate(scheduling.getSchedulingDate())) {
+			attibutes.addFlashAttribute("message","A data selecionada não está disponível");
+			return "redirect:scheduling-form";
+		}
+			
 		DogDAO dogDao = new DogDAO(Dog.class);
 		ServiceDAO serviceDao = new ServiceDAO(Service.class);
 		DAO<Scheduling> dao = new DAO<Scheduling>(Scheduling.class);

@@ -9,6 +9,7 @@
 	<title>Serviços-Agendados</title>
 	</head>
 	<body>
+	<jsp:include page="../cabecalho.jsp"></jsp:include>
 		<h1>Serviços agendados</h1>
 		Forneça a data desejada: <input type="date" id="calDate" name="sdate">
 		<a href="#"onclick="buscarLista($('#calDate').val())">Buscar por data</a>

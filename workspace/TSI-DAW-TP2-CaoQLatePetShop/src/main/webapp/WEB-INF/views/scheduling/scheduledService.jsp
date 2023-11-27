@@ -2,6 +2,12 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ page import="java.util.Calendar" %>
+<%
+    Calendar twentyFourHoursAgo = Calendar.getInstance();
+    twentyFourHoursAgo.setTimeInMillis(twentyFourHoursAgo.getTimeInMillis() + 24 * 60 * 60 * 1000);
+    pageContext.setAttribute("twentyFourHoursAgo", twentyFourHoursAgo);
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,6 +15,8 @@
 	<title>Serviços-Agendados</title>
 	</head>
 	<body>
+	<jsp:include page="../cabecalho.jsp"></jsp:include>
+
 		<h1>Serviços agendados</h1>
 		
 		<table>
@@ -22,6 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                
                     <c:forEach var="service" items="${scheduledService}" varStatus="id">
                         <tr id="service_${service.id}" bgcolor="${id.count % 2 != 0  ? 'ffffff' : 'cccccc'}">
                             <td>${service.id}</td>
@@ -37,7 +46,16 @@
                                 </select>
                             </td>
                             <td class="btn-td">
-                                        <a href="#"onclick="excluirAgora(${service.id})">Remover</a>
+								 <c:choose>
+								        <c:when test="${service.schedulingDate.time.time gt twentyFourHoursAgo.timeInMillis}">
+								            <a href="#" onclick="excluirAgora(${service.id})">Remover</a>
+								        </c:when>
+								        <c:otherwise>
+								            <!-- Conteúdo para quando a condição não for atendida -->
+								        </c:otherwise>
+								    </c:choose>
+                            </td>
+							
                         </tr>
                     </c:forEach>
                 </tbody>

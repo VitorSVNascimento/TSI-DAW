@@ -12,7 +12,9 @@
 		<h1>Prencha os dados para fazer login</h1>
 		
 		<c:if test="${not empty message}">
-			<h2>${message}</h2>
+			<c:forEach items="${message}" var="item">
+				<h2>${item}</h2>
+			</c:forEach>
 		</c:if>
 		
 		<form action="login-validate" method="post">

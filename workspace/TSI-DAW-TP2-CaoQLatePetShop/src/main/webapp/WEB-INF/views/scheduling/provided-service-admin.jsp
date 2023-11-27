@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Serviços prestados por um intervalo de datas</title>
 </head>
 <body>
+<jsp:include page="../cabecalho.jsp"></jsp:include>
 		<h1>Serviços Prestados</h1>
 		Forneça a data inicial: <input type="date" id="initDate" name="idate">
 		Forneça a data final: <input type="date" id="endDate" name="edate">

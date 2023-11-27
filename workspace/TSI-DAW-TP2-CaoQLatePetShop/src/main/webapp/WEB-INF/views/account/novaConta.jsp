@@ -10,6 +10,7 @@
 <title>Novo Cliente</title>
 </head>
 <body>
+<jsp:include page="../cabecalho.jsp"></jsp:include>
 		<h3> Novo Cliente</h3>
 		<c:if test="${not empty message}">
 			<h2>${message}</h2>

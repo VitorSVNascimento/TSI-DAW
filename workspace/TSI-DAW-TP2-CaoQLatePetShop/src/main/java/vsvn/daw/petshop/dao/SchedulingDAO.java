@@ -54,6 +54,28 @@ public class SchedulingDAO extends DAO<Scheduling> {
 	}
 	
 	@Transactional
+	public boolean verifyDate(Calendar date) {
+		try (EntityManager em = super.getEntityManager()){
+			
+			Query query = em.createQuery("SELECT s FROM Scheduling s LEFT JOIN FETCH s.services WHERE s.state = :state AND s.schedulingDate = :cur_date",
+					Scheduling.class);
+			query.setParameter("state", "Em aguardo");
+			query.setParameter("cur_date", date);
+			
+			@SuppressWarnings("unchecked")
+			List<Scheduling> scheduling= query.getResultList();
+			if(scheduling == null)
+				return true;
+			return scheduling.size() == 0; 
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+	@Transactional
 	public List<Scheduling> getProvidedSchedulingAdminByDateInterval(Calendar inclusiveInitDate, Calendar inclusiveEndDate) {
 		try (EntityManager em = super.getEntityManager()){
 			
