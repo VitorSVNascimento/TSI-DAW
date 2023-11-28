@@ -9,12 +9,15 @@
 	<title>Serviços-Agendados</title>
 	</head>
 	<body>
-	<jsp:include page="../cabecalho.jsp"></jsp:include>
-		<h1>Serviços agendados</h1>
-		Forneça a data desejada: <input type="date" id="calDate" name="sdate">
-		<a href="#"onclick="buscarLista($('#calDate').val())">Buscar por data</a>
-		<div id="table_div"></div>
-		
+	<div class="container">
+	
+		<jsp:include page="../cabecalho.jsp"></jsp:include>
+			<h1>Serviços agendados</h1>
+			Forneça a data desejada: <input type="date" id="calDate" name="sdate">
+			<a href="#" class="btn btn-success" onclick="buscarLista($('#calDate').val())">Buscar por data</a>
+			<div id="table_div"></div>
+			
+	</div>
             
 		<script type="text/javascript" src="resources/javaScript/jquery-3.6.1.js"></script>			
    		<script type="text/javascript">

@@ -6,40 +6,43 @@
 <html>
 	<head>
 	<meta charset="ISO-8859-1">
-	<title>Serviços-Agendados</title>
+	<title>Serviços-Realizados</title>
 	</head>
 	<body>
-	<jsp:include page="../cabecalho.jsp"></jsp:include>
-		<h1>Serviços Realizados</h1>
-		
-		<table>
-                <thead>
-                    <tr>
-                        <th>Data do Agendamento</th>
-                        <th>Cachorro</th>
-                        <th>Serviços</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach var="service" items="${executed_services}" varStatus="id">
-                        <tr id="service_${service.id}" bgcolor="${id.count % 2 != 0  ? 'ffffff' : 'cccccc'}">
-                            <td>
-                                <fmt:formatDate value="${service.schedulingDate.time}" pattern="dd/MM/yyyy"/>
-                            </td>
-                            <td>${service.dog.name}</td>
-                            <td>
-                                <select >
-                                    <c:forEach var="item" items="${service.services}">
-                                        <option value="${item.name}">${item.name} -- R$ ${item.price}</option>
-                                    </c:forEach>
-                                </select>
-                            </td>
-                            <td class="total-td">${service.ammount}</td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
-            
+	<div class="container">
+	
+		<jsp:include page="../cabecalho.jsp"></jsp:include>
+			<h1>Serviços Realizados</h1>
+			
+			<table class="table table-info table-striped table-hover">
+	                <thead>
+	                    <tr class="text-center">
+	                        <th>Data do Agendamento</th>
+	                        <th>Cachorro</th>
+	                        <th>Serviços</th>
+	                        <th>Total</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <c:forEach var="service" items="${executed_services}" varStatus="id">
+	                        <tr id="service_${service.id}" class="text-center">
+	                            <td>
+	                                <fmt:formatDate value="${service.schedulingDate.time}" pattern="dd/MM/yyyy"/>
+	                            </td>
+	                            <td>${service.dog.name}</td>
+	                            <td>
+	                                <select >
+	                                    <c:forEach var="item" items="${service.services}">
+	                                        <option value="${item.name}">${item.name} -- R$ ${item.price}</option>
+	                                    </c:forEach>
+	                                </select>
+	                            </td>
+	                            <td class="total-td">${service.ammount}</td>
+	                        </tr>
+	                    </c:forEach>
+	                </tbody>
+	            </table>
+	            
+	</div>
 	</body>
 </html>

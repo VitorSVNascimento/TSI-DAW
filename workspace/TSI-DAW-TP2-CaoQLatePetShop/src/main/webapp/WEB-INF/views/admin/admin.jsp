@@ -7,7 +7,11 @@
 	<title>Página de administrador</title>
 	</head>
 	<body>
+	<div class="container">
 		<jsp:include page="../cabecalho.jsp"></jsp:include>
 		<h1>Bem vindo á página do administrador ${employee.login}</h1>
+		<h2>Utilize o menu para navegar entre as funcionalidades</h1>
+	</div>
+	
 	</body>
 </html>

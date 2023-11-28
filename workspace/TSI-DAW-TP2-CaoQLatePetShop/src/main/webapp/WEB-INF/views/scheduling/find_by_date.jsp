@@ -9,21 +9,21 @@
 	<title>Serviços-Agendados</title>
 	</head>
 	<body>
-		<table id="service_table">
+		<table class="table table-info table-striped table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>ID</th>
                         <th>Data do Agendamento</th>
                         <th>Dono</th>
                         <th>Cachorro</th>
                         <th>Serviços</th>
-                        <th>Cancelar</th>
+                        <th>Realizar</th>
                     </tr>
                 </thead>
                 <tbody>
                 	
                     <c:forEach var="service" items="${date_scheduling}" varStatus="id">
-                        <tr id="service_${service.id}" bgcolor="${id.count % 2 != 0  ? 'ffffff' : 'cccccc'}">
+                        <tr id="service_${service.id}" class="text-center">
                             <td>${service.id}</td>
                             <td>
                                 <fmt:formatDate value="${service.schedulingDate.time}" pattern="dd/MM/yyyy"/>
@@ -38,7 +38,7 @@
                                 </select>
                             </td>
                             <td class="btn-td">
-                                <span id="span_link_${service.id}"> </span> <a href="#"onclick="realizarServico(${service.id})">Realizar</a>
+                                <span id="span_link_${service.id}"> </span> <a class="btn btn-success" href="#"onclick="realizarServico(${service.id})">Realizar</a>
                             </td>
                             
                         </tr>

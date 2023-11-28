@@ -9,28 +9,50 @@
 	<title>Registre seu cachorro</title>
 	</head>
 	<body>
+	<div class="container">
+	
 		<jsp:include page="../cabecalho.jsp"></jsp:include>
-		<h1>Faça o registro do seu cachorro para ter acesso ao nossos serviços, e deixa-lo ainda mais feliz :)</h1>
+		<h3>Faça o registro do seu cachorro para ter acesso ao nossos serviços, e deixa-lo ainda mais feliz :)</h3>
 		<c:if test="${not empty message}">
 			<h2>${message}</h2>
 		</c:if>
+		
+		
 		<form:form action="registrar-cachorro" method="post" modelAttribute="dog">
-			<form:errors path="name" id="name" cssClass="form-error"></form:errors>
-			Nome do seu lindo cachorro : <input type="text" name="name">
-			<form:errors path="breed" id="breed" cssClass="form-error"></form:errors>
-			Qual a raça dele? <input type="text" name="breed">
-			E o tamanho? 
-			<label>
-				<input type="radio" name="size" value="pequeno">Pequeno 
-			</label>
-			<label>
-				<input type="radio" name="size" value="medio">Médio
-			</label>
-			<label>
-				<input type="radio" name="size" value="grande">Grande
-			</label>
-			<input type="submit" value="Registrar">
+			
+			<div class="mb-3">
+				<label for="cac_nome" class="form-label">Nome do seu lindo cachorro </label>
+				 <input id="cac_nome" type="text" name="name">
+				<div>
+					<form:errors path="name" id="name" cssClass="text-danger"></form:errors>
+				</div>			
+			</div>
+			
+			<div class="mb-3">
+				<label for="raca_do" class="form-label">Qual a raça dele?</label>
+				<input id="raca_do" type="text" name="breed">
+				<div>
+					<form:errors path="breed" id="breed" cssClass="text-danger"></form:errors>
+				</div>
+			</div>
+			
+			<div class="mb-3">
+				E o tamanho? 
+				<label>
+					<input type="radio" name="size" value="pequeno">Pequeno 
+				</label>
+				<label>
+					<input type="radio" name="size" value="medio">Médio
+				</label>
+				<label>
+					<input type="radio" name="size" value="grande">Grande
+				</label>
+			
+			</div>
+		
+			<button type="submit" class="btn btn-primary">Registrar</button>
 		</form:form>
+	</div>
 		
 	</body>
 </html>

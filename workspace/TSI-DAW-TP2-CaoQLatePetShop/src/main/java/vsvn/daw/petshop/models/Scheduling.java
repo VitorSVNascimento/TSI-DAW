@@ -7,14 +7,12 @@ import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 @Entity
 public class Scheduling {
@@ -29,7 +27,6 @@ public class Scheduling {
 	private Long id;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(unique = true)
 	private Calendar schedulingDate;
 	
 	@ManyToOne(cascade = CascadeType.MERGE)

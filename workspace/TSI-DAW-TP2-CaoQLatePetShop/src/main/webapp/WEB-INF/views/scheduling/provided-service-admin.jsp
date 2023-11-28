@@ -8,12 +8,15 @@
 <title>Serviços prestados por um intervalo de datas</title>
 </head>
 <body>
-<jsp:include page="../cabecalho.jsp"></jsp:include>
-		<h1>Serviços Prestados</h1>
-		Forneça a data inicial: <input type="date" id="initDate" name="idate">
-		Forneça a data final: <input type="date" id="endDate" name="edate">
-		<a href="#"onclick="buscarLista($('#initDate').val(),$('#endDate').val())">Buscar por intervalo de datas</a>
-		<div id="table_div"></div>
+<div class="container">
+
+	<jsp:include page="../cabecalho.jsp"></jsp:include>
+			<h1>Serviços Prestados</h1>
+			Forneça a data inicial: <input type="date" id="initDate" name="idate">
+			Forneça a data final: <input type="date" id="endDate" name="edate">
+			<a class="btn btn-success" href="#"onclick="buscarLista($('#initDate').val(),$('#endDate').val())">Buscar por intervalo de datas</a>
+			<div id="table_div"></div>
+</div>
 		
             
 		<script type="text/javascript" src="resources/javaScript/jquery-3.6.1.js"></script>			

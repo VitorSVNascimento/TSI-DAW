@@ -10,30 +10,41 @@
 		<title>Agendar novo Atendimento</title>
 	</head>
 	<body>
-		<jsp:include page="../cabecalho.jsp"></jsp:include>
+		<div class="container">
 		
-		<c:if test="${not empty message}">
-			<h2>${message}</h2>
-		</c:if>
-		<form:form modelAttribute="scheduling" action="agendar" method="post">
-			
-			<form:errors path="schedulingDate" id="schedulingDate" cssClass="form-error"></form:errors>
-			Data do agendamento: <input type="date" name="schedulingDate">
-
-			
-			Cachorro que recebrá o serviço
-			<form:select path="dog.id">
-    			<form:options items="${dogs}" itemLabel="name" itemValue="id" />
-			</form:select>
-			
-		
-			 <c:forEach var="serviceType" items="${services_types}">
-                 <input type="checkbox" name="scheduling_services" id="service${serviceType.id}" value="${serviceType.id}" />
-                 <label for="service${serviceType.id}">${serviceType.name}</label>
-             </c:forEach>
-		
-			
-			<input type="submit" value="Registrar">
-		</form:form>		
+			<jsp:include page="../cabecalho.jsp"></jsp:include>
+			<h1>Agendar novo Atendimento</h1>
+			<c:if test="${not empty message}">
+				<h2>${message}</h2>
+			</c:if>
+			<form:form modelAttribute="scheduling" action="agendar" method="post">
+				<div class="mb-3">
+						<label for="dataat" class="form-label">Data do agendamento</label>
+						<input id="dataat" type="date" name="schedulingDate">
+					<div>
+						<form:errors path="schedulingDate" id="schedulingDate" cssClass="text-danger"></form:errors>
+					</div>
+				</div>
+	
+				<div class="mb-3">
+					<label for="seleectt" class="form-label">Cachorro que recebrá o serviço</label>
+					<form:select id="seleectt" cssClass="form-select" path="dog.id">
+		    			<form:options items="${dogs}" itemLabel="name" itemValue="id" />
+					</form:select>
+				</div>
+				
+				<div class="mb-3">
+					 <c:forEach var="serviceType" items="${services_types}">
+					 	<div class="form-check">
+		                 <input class="form-check-input" type="checkbox" name="scheduling_services" id="service${serviceType.id}" value="${serviceType.id}" />
+		                 <label class="form-check-label" for="service${serviceType.id}">${serviceType.name} -- ${serviceType.price}</label>
+					 	</div>
+		             </c:forEach>
+				
+				</div>
+				
+				<button type="submit" class="btn btn-primary">Agendar</button>
+			</form:form>		
+		</div>
 	</body>
 </html>

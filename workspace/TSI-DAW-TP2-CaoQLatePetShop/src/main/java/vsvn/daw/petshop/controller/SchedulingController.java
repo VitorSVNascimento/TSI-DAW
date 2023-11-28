@@ -155,11 +155,7 @@ public class SchedulingController {
  		setStatusScheduling(scheduling.getId(), "Realizado");
  		DAO<Scheduling> dao = new DAO<Scheduling>(Scheduling.class);
  		scheduling = dao.getById(scheduling.getId());
- 		Float total = scheduling.getAmmount();
- 		if(scheduling.getServices().size() >= 3)
- 			total -= total*0.1f;
- 			scheduling.setAmmount(total);
- 		dao.update(scheduling);
+
  	}
  	
  	public void setStatusScheduling(Long id, String status) {

@@ -9,9 +9,9 @@
 	<title>Serviços-Agendados</title>
 	</head>
 	<body>
-		<table id="service_table">
+		<table class="table table-info table-striped table-hover" id="service_table">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>ID</th>
                         <th>Data do Agendamento</th>
                         <th>Dono</th>
@@ -23,7 +23,7 @@
                 <tbody>
                 	
                     <c:forEach var="service" items="${interval_date_scheduling}" varStatus="id">
-                        <tr id="service_${service.id}" bgcolor="${id.count % 2 != 0  ? 'ffffff' : 'cccccc'}">
+                        <tr id="service_${service.id}" class="text-center">
                             <td>${service.id}</td>
                             <td>
                                 <fmt:formatDate value="${service.schedulingDate.time}" pattern="dd/MM/yyyy"/>

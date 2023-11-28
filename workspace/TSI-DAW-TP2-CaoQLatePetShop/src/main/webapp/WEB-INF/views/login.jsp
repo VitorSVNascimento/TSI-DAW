@@ -8,6 +8,7 @@
 		<title>Faça seu login</title>
 	</head>
 	<body>
+	<div class="container">
 		<jsp:include page="cabecalho.jsp"></jsp:include>
 		<h1>Prencha os dados para fazer login</h1>
 		
@@ -17,15 +18,24 @@
 			</c:forEach>
 		</c:if>
 		
-		<form action="login-validate" method="post">
 		
-			Email:<input type="text" name="email">
-			Senha:<input type="text" name="password">
-			
-			<input type="submit" value="Logar">
-			
-		</form>
 		
+			<form action="login-validate" method="post">
+				 <div class="mb-3">
+				  <label for="email_id" class="form-label">Email</label>
+					<input id="email_id" type="text" name="email">
+				 </div>
+				 <div class="mb-3">
+				 	<label for="senha_id" class="form-label">Senha</label>
+					<input id="senha_id" type="text" name="password">
+				 
+				 </div> 
+				
+				<button type="submit" class="btn btn-primary">Logar</button>
+				
+			</form>
+			
+		</div>
 		
 	
 	</body>
