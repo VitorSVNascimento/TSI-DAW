@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="_template.xhtml" >
+<ui:define name="page_title">
+	Registrar Cliente
+</ui:define>
+<ui:define name="corpo">
+	<h:outputScript name="jsf.js" library="javax.faces" target="head"></h:outputScript>
+		<h:form id="register">
+			<h2>Realizar Cadastro</h2>
+			<fieldset>
+				<legend>Dados do Usuário</legend>
+				<h:outputLabel value="Nome" for="Nome"></h:outputLabel>
+				<p:inputText id="Nome" value="#{clientMB.client.fullName}"/>
+				
+				<p:outputLabel for="cpf" value="CPF"/>
+				<p:inputMask id="cpf" value="#{clientMB.client.cpf}" mask="999.999.999-99" validateMask="true" />
+				
+				<p:outputLabel for="phone" value="Telefone"/>
+				<p:inputMask id="phone" value="#{clientMB.client.phoneNumber}" mask="(99)99999-9999" validateMask="true" />
+				
+				<hr />
+				
+				<legend>Dados de endereço</legend>
+				<h:outputLabel value="Rua" for="Rua"></h:outputLabel>
+				<p:inputText id="Rua" value="#{clientMB.address.street}"/>
+				
+				<h:outputLabel value="Bairro" for="Bairro"></h:outputLabel>
+				<p:inputText id="Bairro" value="#{clientMB.address.neighborhood}"/>
+				
+				<h:outputLabel value="Número" for="Número"></h:outputLabel>
+				<p:inputText id="Número" value="#{clientMB.address.number}"/>
+				
+				<h:outputLabel value="Cidade" for="Cidade"></h:outputLabel>
+				<p:inputText id="Cidade" value="#{clientMB.address.city}"/>
+								
+				<h:outputLabel value="Estado" for="Estado"></h:outputLabel>
+				<p:inputText id="Estado" value="#{clientMB.address.state}"/>
+				
+				<p:outputLabel for="cep" value="CEP"/>
+				<p:inputMask id="cep" value="#{clientMB.address.zipCode}" mask="99999-999" validateMask="true" />
+				
+				<h:commandButton value="Registrar" action="#{clientMB.register}">
+					<f:ajax execute="@form" render=":register"></f:ajax>
+				</h:commandButton>
+			</fieldset>
+		</h:form>
+</ui:define>
+</ui:composition>
+</html>

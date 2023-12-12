@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="corpo">
+		<h:outputScript name="jsf.js" library="javax.faces" target="head"></h:outputScript>
+		<h:form id="cadastro">
+			<p:messages styleClass="erros"></p:messages>
+			<h2>
+				<h:outputText value="Novo Produto"
+					rendered="#{empty produtoMB.produto.id}"></h:outputText>
+				<h:outputText value="Editar Produto"
+					rendered="#{not empty produtoMB.produto.id}"></h:outputText>
+			</h2>
+			<p:fieldset legend="Dados do Produto">
+				<h:outputLabel value="Nome" for="nome"></h:outputLabel>
+				<p:inputText id="nome" value="#{produtoMB.produto.nome}">
+					<f:validator validatorId="comecaComMaiuscula"></f:validator>
+				</p:inputText>
+				
+				<h:outputLabel value="Descrição" for="descricao"></h:outputLabel>
+				<p:inputTextarea id="descricao"
+					value="#{produtoMB.produto.descricao}" 
+					required="true" requiredMessage="Campo descrição requerido" 
+					validatorMessage="A descrição deve ter ao menos 5 caracteres">
+					<f:validateLength minimum="5"></f:validateLength>
+					</p:inputTextarea>
+				
+				<h:outputLabel value="Preço" for="preco"/>
+					<p:inputText id="preco" value="#{produtoMB.produto.preco}"
+					required="true" requiredMessage="Preço Obrigatório"
+					validatorMessage="O valor mínimo é R$0.50">
+					<f:validateDoubleRange minimum="0.50" />
+					</p:inputText>
+				
+				<h:commandButton value="Gravar" action="#{produtoMB.grava}">
+					<f:ajax execute="@form" render=":cadastro :lista"></f:ajax>
+				</h:commandButton>
+				<h:commandButton value="Cancelar" action="#{produtoMB.cancela}"
+					rendered="#{not empty produtoMB.produto.id}">
+					<f:ajax render=":cadastro"></f:ajax>
+				</h:commandButton>
+			</p:fieldset>
+		</h:form>
+		<h:form id="lista">
+			<h2>Lista de Produtos</h2>
+			<p:dataTable value="#{produtoMB.produtos}" var="p" styleClass="dados"
+				rowClasses="impar,par" paginator="true" rows="4">
+				<p:column headerText="Nome">#{p.nome}</p:column>
+				<p:column headerText="Descrição">#{p.descricao}</p:column>
+				<p:column headerText="Preço">R$ #{p.preco}</p:column>
+				<p:column headerText="Ações">
+					<h:commandLink value="Alterar" styleClass="btn">
+						<f:setPropertyActionListener value="#{p}"
+							target="#{produtoMB.produto}"></f:setPropertyActionListener>
+						<f:ajax render=":cadastro"></f:ajax>
+					</h:commandLink>
+					<h:commandLink value="Remover" action="#{produtoMB.remove(p)}"
+						styleClass="btn btn-danger">
+						<f:ajax render="@form"></f:ajax>
+					</h:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

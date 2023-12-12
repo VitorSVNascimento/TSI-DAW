@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<ui:composition template="_template.xhtml">
+	<ui:define name="corpo">
+		<h:outputScript name="jsf.js" library="javax.faces" target="head"></h:outputScript>
+		<h:form id="cadastro">
+			<p:messages styleClass="erros"></p:messages>
+				
+			<h2>Nota Fiscal</h2>
+			<p:tabView>
+				<p:tab title="Dados da Nota">
+					<p:fieldset legend="Dados da Nota">
+						<h:outputLabel value="CNPJ" for="cnpj"></h:outputLabel>
+						<p:inputMask id="cnpj" value="#{notaFiscalMB.notaFiscal.cnpj}"
+							mask="99.999.999/9999-99"></p:inputMask>
+
+						<h:outputLabel value="Data" for="data"></h:outputLabel>
+						<p:calendar id="data" value="#{notaFiscalMB.notaFiscal.data.time}"
+							pattern="dd/MM/yyyy"></p:calendar>
+					</p:fieldset>
+				</p:tab>
+				<p:tab title="Dados do Item">
+					<p:fieldset legend="Dados da Item">
+						<h:outputLabel value="Quantidade"></h:outputLabel>
+						<p:inputText value="#{notaFiscalMB.item.quantidade}"></p:inputText>
+						<h:outputLabel value="Produto"></h:outputLabel>
+						<p:selectOneMenu value="#{notaFiscalMB.idProduto}">
+							<f:selectItems value="#{produtoMB.produtos}" var="produto"
+								itemValue="#{produto.id}" itemLabel="#{produto.nome}">
+							</f:selectItems>
+						</p:selectOneMenu>
+
+
+						<h:commandButton value="Guarda Item"
+							action="#{notaFiscalMB.guardaItem}"></h:commandButton>
+					</p:fieldset>
+				</p:tab>
+			</p:tabView>
+
+			<p:dataTable value="#{notaFiscalMB.notaFiscal.itens}" var="item"
+				styleClass="dados" rowClasses="impar,par">
+				<p:column>
+					<f:facet name="header">Produto</f:facet>
+					#{item.produto.nome}
+				</p:column>
+				<p:column>
+					<f:facet name="header">Preço</f:facet>
+					<h:outputText value="#{item.valorUnitario}">
+						<f:convertNumber pattern="R$ #0.00"></f:convertNumber>
+					</h:outputText>
+				</p:column>
+				<p:column>
+					<f:facet name="header">Quantidade</f:facet>
+					#{item.quantidade}
+				</p:column>
+				<p:column>
+					<f:facet name="header">Total</f:facet>
+					<h:outputText value="#{item.total}">
+						<f:convertNumber pattern="R$ #0.00"></f:convertNumber>
+					</h:outputText>
+				</p:column>
+			</p:dataTable>
+			<h:commandButton value="Gravar" action="#{notaFiscalMB.grava}"></h:commandButton>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

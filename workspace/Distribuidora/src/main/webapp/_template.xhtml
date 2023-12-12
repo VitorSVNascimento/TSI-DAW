@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Sistema de Notas Fiscais - Distribuidora Real</title>
+	<h:outputStylesheet name="style.css" library="css"></h:outputStylesheet>
+</h:head>
+<h:body>
+	<div id="cabecalho">
+		<h:graphicImage library="imagens" name="logo-distribuidora.png"
+			id="logoCompany" />
+		<div id="usuarioLogado">
+			<h:form rendered="#{not empty userMB.user.username}">
+				<h:outputText value="Logado como: #{userMB.user.username}" />
+			</h:form>
+		</div>
+
+	</div>
+
+	<div id="conteudo">
+		<h:form rendered="#{not empty userMB.user.username}">
+			<p:menubar>
+				<p:menuitem value="Produtos" url="produto.xhtml" />
+				<p:submenu label="Notas Fiscais">
+					<p:menuitem value="Cadastro" url="notafiscal.xhtml" />
+					<p:menuitem value="Listagem" url="listanotas.xhtml" />
+				</p:submenu>
+				<p:menuitem value="Sair" action="#{userMB.logout}" />
+			</p:menubar>
+		</h:form>
+		<ui:insert name="corpo"></ui:insert>
+	</div>
+
+	<div id="rodape">Copyright 2023. Todos os Direitos reservados a
+		Priscila.</div>
+</h:body>
+</html>

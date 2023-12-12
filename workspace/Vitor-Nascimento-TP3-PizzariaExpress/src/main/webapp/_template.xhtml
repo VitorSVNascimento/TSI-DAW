@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Pizzaria Express - <ui:insert name="page_title"></ui:insert> </title>
+	<h:outputStylesheet name="style.css" library="css"></h:outputStylesheet>
+</h:head>
+<h:body>
+	<div id="cabecalho">
+		<h:graphicImage library="imagens" name="logo-distribuidora.png"
+			id="logoCompany" />
+		<div id="usuarioLogado">
+			<h:form rendered="#{not empty employeeMB.employee.username}">
+				<h:outputText value="Bem vindo, #{employeeMB.employee.username}!" />
+			</h:form>
+			
+        <h:form rendered="#{not empty clientMB.client.email}">
+            <h:outputText value="Bem-vindo, #{clientMB.client.email}!" />
+        </h:form>
+			
+		</div>
+
+	</div>
+
+	<div id="conteudo">
+		<h:form rendered="#{not empty employeeMB.employee.username}">
+			<p:menubar>
+				<p:menuitem value="Produtos" url="produto.xhtml" />
+				<p:submenu label="Notas Fiscais">
+					<p:menuitem value="Cadastro" url="notafiscal.xhtml" />
+					<p:menuitem value="Listagem" url="listanotas.xhtml" />
+				</p:submenu>
+				<p:menuitem value="Sair" action="#{employeeMB.logout}" />
+			</p:menubar>
+		</h:form>
+		
+		<!-- Caso seja um cliente -->
+		
+	    <h:form rendered="#{not empty clientMB.client.email}">
+	        <p:menubar>
+	            <p:menuitem value="Meus dados" url="client-main-page.xhtml" />
+	            <p:menuitem value="Sair" action="#{clientMB.logout}" />
+	        </p:menubar>
+	    </h:form>
+		
+    	<!-- Links de login -->
+	    <h:form rendered="#{empty employeeMB.employee.username and empty clientMB.client.email}">
+	        <p:menubar>
+	            <p:menuitem value="Login Administrativo" url="login.xhtml" />
+	            <p:menuitem value="Login Cliente" url="login-client.xhtml" />
+	        </p:menubar>
+	    </h:form>
+		
+		<ui:insert name="corpo"></ui:insert>
+		
+	</div>
+
+	<div id="rodape">Copyright 2023. Todos os Direitos reservados a Vitor Nascimento.</div>
+</h:body>
+</html>
