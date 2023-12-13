@@ -62,7 +62,7 @@ public class ClientMB {
 		if(isNewClient())
 			return "client-register?faces-redirect=true";
 		address = client.getAddress();
-		return "client-main-page?faces-redirect=true";
+		return "client-order-page?faces-redirect=true";
 		
 	}
 	
@@ -90,7 +90,7 @@ public class ClientMB {
 		client.setAddress(address);
 		
 		clientDAO.altera(client);
-		return "client-main-page?faces-redirect=true";
+		return "client-order-page?faces-redirect=true";
 		
 	}
 	

@@ -19,15 +19,26 @@ public class MenuItem {
 	    private String description;
 	    private String size;
 	    private String category;
-	    private double value;
+	    private Double value;
 
 	    // Getter and setter methods for each attribute
-
+	    
+	    
+	    public Long getId() {
+	    	return id;
+	    }
+	    
+	    public void setId(Long id) {
+	    	this.id = id;
+	    }
+	    
+	    
 	    public String getName() {
 	        return name;
 	    }
 
-	    public void setName(String name) {
+
+		public void setName(String name) {
 	        this.name = name;
 	    }
 
@@ -55,11 +66,11 @@ public class MenuItem {
 	        this.category = category;
 	    }
 
-	    public double getValue() {
+	    public Double getValue() {
 	        return value;
 	    }
 
-	    public void setValue(double value) {
+	    public void setValue(Double value) {
 	        this.value = value;
 	    }
 }

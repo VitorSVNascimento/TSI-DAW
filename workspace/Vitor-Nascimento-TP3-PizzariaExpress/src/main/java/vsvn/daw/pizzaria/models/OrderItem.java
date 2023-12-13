@@ -25,7 +25,7 @@ public class OrderItem {
 		total = 0.0;
 	}
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private MenuItem menuItem;
 
 	public Long getId() {
@@ -45,7 +45,9 @@ public class OrderItem {
 	}
 
 	public Double getTotal() {
-		return total;
+		if (quantity != null && menuItem.getValue() != null)
+			return total = quantity * menuItem.getValue();
+		return total = 0.0;
 	}
 
 	public void setTotal(Double total) {
