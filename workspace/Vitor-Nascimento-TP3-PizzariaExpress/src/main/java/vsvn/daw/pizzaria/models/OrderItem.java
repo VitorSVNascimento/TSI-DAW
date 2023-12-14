@@ -1,6 +1,5 @@
 package vsvn.daw.pizzaria.models;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,7 +19,7 @@ public class OrderItem {
 	private Long id;
 	private Integer quantity;
 	private  Double total;
-	
+	private boolean status;
 	{
 		total = 0.0;
 	}
@@ -62,5 +61,16 @@ public class OrderItem {
 		this.menuItem = menuItem;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
+	public String getStatusString() {
+		return isStatus() ? "Pedido Atendido" : "Pedido em Andamento";
+	}
 	
 }

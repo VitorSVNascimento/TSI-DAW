@@ -35,10 +35,16 @@ public class Authorizer implements PhaseListener{
 	                context.renderResponse();
 	        }
 	        
-	        if (viewId.startsWith("/employee-") && !employeeMB.isLogado()){
+	        if (viewId.startsWith("/employee-admin") && !employeeMB.isAdm()){
 		            NavigationHandler handler = context.getApplication().getNavigationHandler();
 		            handler.handleNavigation(context, null, "login?faces-redirect=true");
 		            context.renderResponse();
+	        }
+	        
+	        if(viewId.startsWith("/employee-coz") && !employeeMB.isCozinha()) {
+	            NavigationHandler handler = context.getApplication().getNavigationHandler();
+	            handler.handleNavigation(context, null, "login?faces-redirect=true");
+	            context.renderResponse();
 	        }
 	        
 	    }

@@ -20,6 +20,7 @@ public class MenuItem {
 	    private String size;
 	    private String category;
 	    private Double value;
+	    private Boolean availability;
 
 	    // Getter and setter methods for each attribute
 	    
@@ -73,4 +74,14 @@ public class MenuItem {
 	    public void setValue(Double value) {
 	        this.value = value;
 	    }
+
+		public Boolean getAvailability() {
+			return availability;
+		}
+
+		public void setAvailability(Boolean availability) {
+			this.availability = availability;
+		}
+	    
+	    
 }

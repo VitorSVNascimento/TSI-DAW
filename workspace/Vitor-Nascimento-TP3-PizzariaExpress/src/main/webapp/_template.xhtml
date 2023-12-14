@@ -12,7 +12,7 @@
 </h:head>
 <h:body>
 	<div id="cabecalho">
-		<h:graphicImage library="imagens" name="logo-distribuidora.png"
+		<h:graphicImage library="imagens" name="logo.png"
 			id="logoCompany" />
 		<div id="usuarioLogado">
 			<h:form rendered="#{not empty employeeMB.employee.username}">
@@ -28,14 +28,19 @@
 	</div>
 
 	<div id="conteudo">
-		<h:form rendered="#{not empty employeeMB.employee.username}">
+		<h:form rendered="#{employeeMB.cozinha}">
 			<p:menubar>
-				<p:menuitem value="Produtos" url="produto.xhtml" />
-				<p:submenu label="Notas Fiscais">
-					<p:menuitem value="Cadastro" url="notafiscal.xhtml" />
-					<p:menuitem value="Listagem" url="listanotas.xhtml" />
-				</p:submenu>
+				<p:menuitem value="Mesas não atendidas" url="employee-coz-not-serverd.xhtml" />
 				<p:menuitem value="Sair" action="#{employeeMB.logout}" />
+			</p:menubar>
+		</h:form>
+		
+		<h:form rendered="#{employeeMB.adm}">
+			<p:menubar>
+				<p:menuitem value="Itens do cardápio" url="employee-admin-page.xhtml" />
+				<p:menuitem value="Faturamento do dia" url="employee-admin-day-ammount.xhtml" />
+				<p:menuitem value="Sair" action="#{employeeMB.logout}" />
+				
 			</p:menubar>
 		</h:form>
 		
@@ -44,7 +49,8 @@
 	    <h:form rendered="#{not empty clientMB.client.email}">
 	        <p:menubar>
 	            <p:menuitem value="Meus dados" url="client-main-page.xhtml" />
-	            <p:menuitem value="Realizar Pedido" url="client-order-page.xhtml" />
+	            <p:menuitem value="Realizar pedido" url="client-order-page.xhtml" />
+	            <p:menuitem value="Historico de pedidos" url="client-history-orders.xhtml" />
 	            <p:menuitem value="Sair" action="#{clientMB.logout}" />
 	        </p:menubar>
 	    </h:form>
@@ -53,7 +59,7 @@
 	    <h:form rendered="#{empty employeeMB.employee.username and empty clientMB.client.email}">
 	        <p:menubar>
 	            <p:menuitem value="Login Administrativo" url="login.xhtml" />
-	            <p:menuitem value="Login Cliente" url="login-client.xhtml" />
+	            <p:menuitem value="Login Cliente" url="login-client.xhtml"/>
 	        </p:menubar>
 	    </h:form>
 		

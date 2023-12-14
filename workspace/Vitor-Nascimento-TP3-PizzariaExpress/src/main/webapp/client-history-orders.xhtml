@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="_template.xhtml" >
+<ui:define name="page_title">Histórico de pedidos</ui:define>
+<ui:define name="corpo">
+<h:outputScript name="jsf.js" library="javax.faces" target="head"></h:outputScript>
+	<h2>Seus Pedidos</h2>
+	<p:messages styleClass="erros"></p:messages>
+	<h:form id="lista">
+
+	
+		<p:dataList  value="#{orderListMB.clientOrders(clientMB.client.id)}" var="order">
+			
+				<h:outputText value="#{order.orderDate.time}">
+					<f:convertDateTime type="date"  dateStyle="short" pattern="dd/MM/yyyy" />
+				</h:outputText>
+			
+			<p:dataTable  value="#{order.itens}" var="item" styleClass="dados" rowClasses="impar,par">
+				
+				<p:column headerText="Item">
+					<h:outputText value="#{item.menuItem.name}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Descrição">
+					<h:outputText value="#{item.menuItem.description}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Quantidade">
+					<h:outputText value="#{item.quantity}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Valor Unitário">
+					<h:outputText value="#{item.menuItem.value}">
+						<f:convertNumber pattern="R$ #0.00"></f:convertNumber>
+					</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Total">
+					<h:outputText value="#{item.total}">
+						<f:convertNumber pattern="R$ #0.00"></f:convertNumber>
+					</h:outputText>
+				</p:column>
+				
+			</p:dataTable>
+			<h:outputText value="Total = R$ #{order.total}"></h:outputText>
+		</p:dataList>
+	
+	
+		
+	</h:form>
+	
+</ui:define>
+</ui:composition>
+</html>

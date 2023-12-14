@@ -50,6 +50,7 @@ public class ClientMB {
 			client.setToken(TokenGenerator.generateToken());
 			
 		}while(clientDAO.tokenExists(client.getToken()));
+		System.out.println("Your token ===== " + client.getToken());
 	}
 	
 	public String validateToken() {

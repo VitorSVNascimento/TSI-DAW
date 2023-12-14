@@ -25,12 +25,23 @@ public class EmployeeMB {
 		if (logedEmployee.getUserType().equals("admin"))
 			return "employee-admin-page?faces-redirect=true";
 		
-		return "employee-cozinha-page?faces-redirect=true";
+		return "employee-coz-not-serverd?faces-redirect=true";
 		
 	}
 	
 	public boolean isLogado() {
 		return employee.getUsername() != null;
+	}
+	
+	public boolean isCozinha() {
+		if ( employee.getUserType() == null || employee.getUserType().isBlank() || !employee.getUserType().equals("cozinha"))
+			return false;
+		return true;
+	}
+	public boolean isAdm() {
+		if ( employee.getUserType() == null || employee.getUserType().isBlank() || !employee.getUserType().equals("admin"))
+			return false;
+		return true;
 	}
 	
 	public String logout() {

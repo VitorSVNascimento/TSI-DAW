@@ -17,21 +17,22 @@
 			<p:tabView>
 				<p:tab title="Dados do Pedido">
 					<p:fieldset legend="Dados do pedido">
-						<h:outputLabel value="pastel" for="pastel"></h:outputLabel>
-						<p:inputText id="pastel" value="#{clientMB.client.fullName}"></p:inputText>
+						<h:outputLabel value="Numero da mesa" for="tableNumber"></h:outputLabel>
+						<p:inputNumber id="tableNumber" value="#{orderInfoMB.tableNumber}"></p:inputNumber>
+						
+						<h:commandButton value="Enviar número da mesa" action="#{orderInfoMB.sendNumber(clientMB.client.id)}"></h:commandButton>
 					</p:fieldset>
-				
 				
 				</p:tab>
 				
-				<p:tab title="Dados do Item">
+				<p:tab title="Dados do Item" rendered="#{not empty orderInfoMB.orderInfo.tableNumber}">
 					<p:fieldset title="Dados do Item">
 						<h:outputLabel value="Quantidade"></h:outputLabel>
 						<p:inputText value="#{orderInfoMB.orderItem.quantity}"></p:inputText>
 						<h:outputLabel value="Produto"></h:outputLabel>
 						<p:selectOneMenu value="#{orderInfoMB.idMenuItem}">
-							<f:selectItems value="#{menuItemMB.menuItens}" var="produto"
-								itemValue="#{produto.id}" itemLabel="#{produto.name}">
+							<f:selectItems value="#{menuItemMB.menuItensAvailability}" var="produto"
+								itemValue="#{produto.id}" itemLabel="#{produto.category} - #{produto.name} - #{produto.description} - #{produto.size}">
 							</f:selectItems>
 						</p:selectOneMenu>
 						
@@ -42,10 +43,14 @@
 				
 			</p:tabView>
 			
-			<p:dataTable value="#{orderInfoMB.orderInfo.itens}" var="item" styleClass="dados" rowClasses="impar,par">
+			<p:dataTable rendered="#{not empty orderInfoMB.orderInfo.tableNumber}" value="#{orderInfoMB.orderInfo.itens}" var="item" styleClass="dados" rowClasses="impar,par">
 				<p:column>
 					<f:facet name="header">Produto</f:facet>
 					#{item.menuItem.name}
+				</p:column>
+				<p:column>
+					<f:facet name="header">Tamanho</f:facet>
+					#{item.menuItem.size}
 				</p:column>
 				<p:column>
 					<f:facet name="header">Preço</f:facet>
@@ -63,8 +68,12 @@
 						<f:convertNumber pattern="R$ #0.00"></f:convertNumber>
 					</h:outputText>
 				</p:column>
+				<p:column>
+					<f:facet name="header">Remover</f:facet>
+					<h:commandButton value="Remover Item" action="#{orderInfoMB.removeItem(item.menuItem.id)}"></h:commandButton>
+				</p:column>
 			</p:dataTable>
-			<h:commandButton value="Gravar" action="#{orderInfoMB.save}"></h:commandButton>
+			<h:commandButton rendered="#{not empty orderInfoMB.orderInfo.tableNumber}" value="Finalizar Pedido" action="#{orderInfoMB.save}"></h:commandButton>
 		</h:form>
 		
 </ui:define>

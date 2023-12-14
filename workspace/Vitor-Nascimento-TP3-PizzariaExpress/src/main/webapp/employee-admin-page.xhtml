@@ -7,9 +7,92 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 <ui:composition template="_template.xhtml" >
+<ui:define name="page_title">Itens</ui:define>
 <ui:define name="corpo">
 	<h:outputScript name="jsf.js" library="javax.faces" target="head"></h:outputScript>
-	<h1>Página da ademir</h1>
+	
+		<h:form id="cadastro">
+			<p:messages styleClass="errors"></p:messages>
+			
+			<h2>
+				<h:outputText value="Novo Item" rendered="#{empty menuItemMB.menuItem.id}"></h:outputText>
+				<h:outputText value="Alterar item" rendered="#{not empty menuItemMB.menuItem.id}"></h:outputText>
+			</h2>
+			
+			<p:fieldset rendered="#{empty menuItemMB.menuItem.id}" legend="Dados do produto">
+				<h:outputLabel value="Nome" for="nome"></h:outputLabel>
+				<p:inputText id="nome" value="#{menuItemMB.menuItem.name}"></p:inputText>
+				
+				<h:outputLabel value="Descrição" for="description"></h:outputLabel>
+				<p:inputText id="description" value="#{menuItemMB.menuItem.description}"></p:inputText>
+				
+				<h:outputLabel value="Tamanho" for="tamanho"></h:outputLabel>
+				<p:inputText id="tamanho" value="#{menuItemMB.menuItem.name}"></p:inputText>
+				
+				<h:outputLabel value="Categoria" for="category"></h:outputLabel>
+				<p:inputText id="category" value="#{menuItemMB.menuItem.category}"></p:inputText>
+
+				<h:outputLabel value="Valor" for="valuel"></h:outputLabel>
+				<p:inputNumber id="valuel" value="#{menuItemMB.menuItem.value}"></p:inputNumber>
+				
+				<h:commandButton value="Gravar" action="#{menuItemMB.save}">
+					<f:ajax execute="@form" render=":cadastro :lista"></f:ajax>
+				</h:commandButton>
+				
+			</p:fieldset>
+			
+			<p:fieldset rendered="#{not empty menuItemMB.menuItem.id}" legend="Dados do produto">
+				<h:outputLabel value="Nome" for="nomeU"></h:outputLabel>
+				<p:inputText disabled="true" id="nomeU" value="#{menuItemMB.menuItem.name}"></p:inputText>
+				
+				<h:outputLabel value="Descrição" for="descriptionU"></h:outputLabel>
+				<p:inputText disabled="true" id="descriptionU" value="#{menuItemMB.menuItem.description}"></p:inputText>
+				
+				<h:outputLabel value="Tamanho" for="tamanhoU"></h:outputLabel>
+				<p:inputText disabled="true" id="tamanhoU" value="#{menuItemMB.menuItem.size}"></p:inputText>
+				
+				<h:outputLabel value="Categoria" for="categoryU"></h:outputLabel>
+				<p:inputText disabled="true" id="categoryU" value="#{menuItemMB.menuItem.category}"></p:inputText>
+
+				<h:outputLabel value="Valor" for="valuelU"></h:outputLabel>
+				<p:inputNumber id="valuelU" value="#{menuItemMB.menuItem.value}"></p:inputNumber>
+
+				<h:outputLabel value="Disponibilidade" for="disponibilidade"></h:outputLabel>
+				<p:selectBooleanCheckbox id="disponibilidade" value="#{menuItemMB.menuItem.availability}"></p:selectBooleanCheckbox>
+				
+				<h:commandButton value="Alterar" action="#{menuItemMB.update}">
+					<f:ajax execute="@form" render=":cadastro :lista"></f:ajax>
+				</h:commandButton>
+				
+				<h:commandButton value="Cancelar" action="#{menuItemMB.cancel}">
+					<f:ajax render=":cadastro"></f:ajax>
+				</h:commandButton>
+				
+			</p:fieldset>
+			
+		</h:form>		
+		
+		<h:form id="lista">
+			<h2>Lista de Itens</h2>
+			<p:dataTable value="#{menuItemMB.menuItens}" var="p" styleClass="dados"
+				rowClasses="impar,par" paginator="true" rows="4">
+				<p:column headerText="Nome">#{p.name}</p:column>
+				<p:column headerText="Descrição">#{p.description}</p:column>
+				<p:column headerText="Preço">R$ #{p.value}</p:column>
+				<p:column headerText="Ações">
+					<h:commandLink value="Alterar" styleClass="btn">
+						<f:setPropertyActionListener value="#{p}"
+							target="#{menuItemMB.menuItem}"></f:setPropertyActionListener>
+						<f:ajax render=":cadastro"></f:ajax>
+					</h:commandLink>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		
+		
+		
+		
+	
 </ui:define>
 </ui:composition>
 </html>

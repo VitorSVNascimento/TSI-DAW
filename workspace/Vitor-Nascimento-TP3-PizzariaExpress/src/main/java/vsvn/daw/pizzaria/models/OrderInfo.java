@@ -29,7 +29,7 @@ public class OrderInfo {
 		@ManyToOne
 	    private Client client;
 	    private double totalValue;
-	    private int tableNumber;
+	    private Integer tableNumber;
 	    @OneToMany(cascade = CascadeType.PERSIST)	
 	    private List<OrderItem> itens = new ArrayList<OrderItem>();
 	    // Getter and setter methods for each attribute
@@ -58,11 +58,11 @@ public class OrderInfo {
 	        this.totalValue = totalValue;
 	    }
 
-	    public int getTableNumber() {
+	    public Integer getTableNumber() {
 	        return tableNumber;
 	    }
 
-	    public void setTableNumber(int tableNumber) {
+	    public void setTableNumber(Integer tableNumber) {
 	        this.tableNumber = tableNumber;
 	    }
 
@@ -80,6 +80,30 @@ public class OrderInfo {
 
 		public void setItens(List<OrderItem> itens) {
 			this.itens = itens;
+		}
+		
+		public Double getTotal() {
+			Double total = 0.0;
+			for(OrderItem o : itens)
+				total+=o.getTotal();
+			return total;
+		}
+		
+		public List<OrderItem> getItensNotServed(){
+			List<OrderItem> notServerd = new ArrayList<OrderItem>();
+			for(OrderItem o : itens)
+				if(!o.isStatus())
+					notServerd.add(o);
+			return notServerd;
+		}
+		
+		public OrderItem serve(Long idItem) {
+			for(OrderItem i : itens)
+				if(i.getId() == idItem) {
+					i.setStatus(true);
+					return i;
+				} 
+			return null;		
 		}
 	    
 }

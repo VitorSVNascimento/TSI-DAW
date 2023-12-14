@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<ui:composition template="_template.xhtml" >
+<ui:define name="page_title">Mesas Não Atendidas</ui:define>
+<ui:define name="corpo">
+	<h:outputScript name="jsf.js" library="javax.faces" target="head"></h:outputScript>
+	<p:messages styleClass="erros"></p:messages>
+	<h1>Página da cozinha</h1>
+		
+	<h:form id="list">
+		<p:dataList value="#{orderListMB.notServed}" var="order">
+			<h:outputText value="Pedido: #{order.id} Mesa - #{order.tableNumber}"></h:outputText>
+			
+			<p:dataTable value="#{order.itensNotServed}" var="item">
+				<p:column headerText="Item">
+					<h:outputText value="#{item.menuItem.name}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Descrição">
+					<h:outputText value="#{item.menuItem.description}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Tamanho">
+					<h:outputText value="#{item.menuItem.size}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Quantidade">
+					<h:outputText value="#{item.quantity}"></h:outputText>
+				</p:column>
+				
+				<p:column headerText="Status">
+					<h:commandButton value="#{item.statusString}" action="#{orderListMB.serveOrderItem(item.id,order.id)}"></h:commandButton>
+				</p:column>
+				
+				
+			
+			</p:dataTable>
+		
+		</p:dataList>
+	
+	</h:form>
+		
+		
+</ui:define>
+</ui:composition>
+</html>
